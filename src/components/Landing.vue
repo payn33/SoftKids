@@ -482,10 +482,7 @@
         </div>
       </footer>
 
-      <div id="end"></div>
-    </div>
-
-    <svg width="0" height="0">
+      <svg width="0" height="0">
       <defs>
         <clipPath id="leftCurve" clipPathUnits="objectBoundingBox">
           <path
@@ -514,6 +511,11 @@
         </clipPath>
       </defs>
     </svg>
+
+      <div id="end"></div>
+    </div>
+
+    
   </div>
 </template>
 
