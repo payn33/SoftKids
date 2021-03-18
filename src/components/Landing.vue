@@ -92,7 +92,7 @@
     <div class="partners" id="partners">
       <h1>Our Partners</h1>
       <div class="logo-row1" v-if="classes.toggle_partner_row1">
-        <span>
+        <span class="leftTop">
           <svg
             width="28"
             height="28"
@@ -110,7 +110,7 @@
           <p>Logoipsum</p>
         </span>
 
-        <span>
+        <span class="leftBottom">
           <svg
             width="20"
             height="30"
@@ -128,7 +128,7 @@
           <p>Logoipsum</p>
         </span>
 
-        <span>
+        <span class="center">
           <svg
             width="69"
             height="21"
@@ -150,7 +150,7 @@
           <p>Logoipsum</p>
         </span>
 
-        <span>
+        <span class="rightTop">
           <svg
             width="28"
             height="24"
@@ -169,7 +169,7 @@
           <p>Logoipsum</p>
         </span>
 
-        <span>
+        <span class="rightBottom">
           <svg
             width="30"
             height="30"
@@ -189,7 +189,7 @@
         </span>
       </div>
       <div class="logo-row2" v-if="classes.toggle_partner_row2">
-        <span>
+        <span class="center">
           <svg
             width="69"
             height="21"
@@ -211,7 +211,7 @@
           <p>Logoipsum</p>
         </span>
 
-        <span>
+        <span class="leftTop">
           <svg
             width="30"
             height="30"
@@ -230,7 +230,7 @@
           <p>Logoipsum</p>
         </span>
 
-        <span>
+        <span class="leftBottom">
           <svg
             width="20"
             height="30"
@@ -248,7 +248,7 @@
           <p>Logoipsum</p>
         </span>
 
-        <span>
+        <span class="rightTop">
           <svg
             width="28"
             height="28"
@@ -266,7 +266,7 @@
           <p>Logoipsum</p>
         </span>
 
-        <span>
+        <span class="rightBottom">
           <svg
             width="28"
             height="24"
@@ -356,7 +356,7 @@
     <div class="courses" id="courses">
       <h1>Courses</h1>
 
-      <div class="courses-row1">
+      <div class="courses-row1" v-if="classes.toggle_course_row1">
         <span
           ><img src="@/assets/courses1.png" alt="" />
           <p>Website Design and Development</p>
@@ -374,7 +374,7 @@
         </span>
       </div>
 
-      <div class="courses-row2">
+      <div class="courses-row2" v-if="classes.toggle_course_row2">
         <span
           ><img src="@/assets/courses4.png" alt="" />
           <p>Design Bootcamp</p>
@@ -802,7 +802,7 @@ nav > ul li:hover {
 }
 .partners div span {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 }
 .partners div:first-of-type {
@@ -1107,5 +1107,33 @@ footer .social span div svg {
   border-radius: 30px 30px 0px 0px;
 }
 @media only screen and (max-width: 700px) {
+  .leftTop {
+    grid-area: leftTop;
+  }
+  .leftBottom {
+    grid-area: leftBottom;
+  }
+  .center {
+    grid-area: center;
+  }
+  .rightTop {
+    grid-area: rightTop;
+    justify-content: flex-end;
+  }
+  .rightBottom {
+    grid-area: rightBottom;
+    justify-content: flex-end;
+  }
+
+  .partners div {
+    display: grid;
+    grid-template-areas:
+      "leftTop leftTop leftTop rightTop rightTop rightTop"
+      " center center center center center center"
+      " leftBottom leftBottom leftBottom rightBottom rightBottom rightBottom";
+    grid-row-gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 </style>
