@@ -7,11 +7,19 @@
         </span>
 
         <ul>
-          <li>Partners</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Courses</li>
-          <li>Register</li>
+          <a href="#partners">
+            <li>Partners</li>
+          </a>
+          <a href="#about">
+            <li>About</li>
+          </a>
+          <a href="#contact">
+            <li>Contact</li>
+          </a>
+          <a href="#courses">
+            <li>Courses</li>
+          </a>
+          <li @click="windowSize()">Register</li>
         </ul>
       </nav>
       <div class="left">
@@ -81,9 +89,9 @@
       </div>
     </div>
 
-    <div class="partners">
+    <div class="partners" id="partners">
       <h1>Our Partners</h1>
-      <div class="logo-row1">
+      <div class="logo-row1" v-if="classes.toggle_partner_row1">
         <span>
           <svg
             width="28"
@@ -180,7 +188,7 @@
           <p>Logoipsum</p>
         </span>
       </div>
-      <div class="logo-row2">
+      <div class="logo-row2" v-if="classes.toggle_partner_row2">
         <span>
           <svg
             width="69"
@@ -279,7 +287,7 @@
       </div>
     </div>
 
-    <div class="about">
+    <div class="about" id="about">
       <h1>About Softkids</h1>
       <div class="about-content">
         <div class="img">
@@ -333,19 +341,19 @@
         </defs>
       </svg>
 
-      <div class="events-row1">
+      <div class="events-row1" v-if="classes.toggle_event_row1">
         <span><img src="@/assets/event1.png" alt="" /></span>
         <span><img src="@/assets/event2.png" alt="" /></span>
         <span><img src="@/assets/event3.png" alt="" /></span>
       </div>
-      <div class="events-row2">
+      <div class="events-row2" v-if="classes.toggle_event_row2">
         <span><img src="@/assets/event4.png" alt="" /></span>
         <span><img src="@/assets/event5.png" alt="" /></span>
         <span><img src="@/assets/event6.png" alt="" /></span>
       </div>
     </div>
 
-    <div class="courses">
+    <div class="courses" id="courses">
       <h1>Courses</h1>
 
       <div class="courses-row1">
@@ -385,7 +393,7 @@
       </div>
     </div>
 
-    <div class="contact-body">
+    <div class="contact-body" id="contact">
       <div class="contact">
         <div class="left">
           <h2>Contact Us</h2>
@@ -482,7 +490,11 @@
         </div>
       </footer>
 
-      <svg width="0" height="0">
+      <div id="end"></div>
+    </div>
+  </div>
+  <div id="svg">
+    <svg width="0" height="0">
       <defs>
         <clipPath id="leftCurve" clipPathUnits="objectBoundingBox">
           <path
@@ -509,23 +521,40 @@
               Z"
           />
         </clipPath>
+      </defs></svg
+    ><svg width="0" height="0">
+      <defs>
+        <clipPath id="courseTopCurve" clipPathUnits="objectBoundingBox">
+          <path
+            d="M 0 .1
+                   C 0.1 0 .2 .1 .35 .19 
+                   C  0.6 0.3 0.9 0 1 .1
+                   C 1 -.1 1 0 1 .99
+                   L 1 .88
+                   C .7 1 .7 1 .6 .88
+                   C .5 .8 .5 .88 0 1
+                   L 0 1
+                   Z
+                  "
+          />
+        </clipPath>
       </defs>
     </svg>
-
-      <div id="end"></div>
-    </div>
-
-    
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
-// import { ref, onBeforeMount, onMounted } from "vue";
+// import { ref } from "vue";
+import { ref, onMounted } from "vue";
 export default {
   setup() {
     const classes = ref({
-      toggle_carousel: true,
+      toggle_course_row1: true,
+      toggle_course_row2: true,
+      toggle_event_row1: true,
+      toggle_event_row2: true,
+      toggle_partner_row1: true,
+      toggle_partner_row2: true,
     });
 
     let togCarousel = ref();
@@ -535,18 +564,25 @@ export default {
         window.innerWidth ||
         document.documentElement.clientWidth ||
         document.body.clientWidth;
+      console.log(togCarousel);
     };
 
     const toggleCarousel = (size) => {
-      if (size >= 750) {
-        classes.value.toggle_nav = false;
+      if (size <= 700) {
+        (classes.value.toggle_course_row2 = false),
+          (classes.value.toggle_event_row2 = false),
+          (classes.value.toggle_partner_row2 = false);
       }
     };
-    //onbeforemount for windowsize and togCarousel
-    setInterval(() => {
+    onMounted(() => {
       windowSize();
       toggleCarousel(togCarousel);
-    }, 500);
+    });
+    //onbeforemount for windowsize and togCarousel
+    // setInterval(() => {
+    //   windowSize();
+    //   toggleCarousel(togCarousel);
+    // }, 500);
     return {
       classes,
       windowSize,
@@ -557,6 +593,9 @@ export default {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+}
 .body {
   width: 100%;
   height: 100%;
@@ -600,7 +639,7 @@ nav ul li {
   color: #fee8da;
   transition: all 0.4s ease;
 }
-ul li:hover {
+nav > ul li:hover {
   background: #fff;
   border-radius: 30px;
   padding: 15px;
@@ -828,7 +867,7 @@ ul li:hover {
 }
 .events {
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   margin-top: 50px;
   padding-top: 70px;
   position: relative;
@@ -871,7 +910,7 @@ ul li:hover {
 .events div span:nth-child(2) {
   padding: 0 20px;
 }
-.events-row2 span:nth-child(2) {
+.events-row2 span:nth-child(2).cour {
   transform: translateY(30px);
 }
 .events-row2 span:nth-child(1) {
@@ -882,14 +921,20 @@ ul li:hover {
 }
 .courses {
   width: 100%;
+  /* height: 100vh; */
   margin: 90px auto auto auto;
+  padding-bottom: 20%;
   background: linear-gradient(115.59deg, #fc9f31 4.05%, #ee4e4e 107.24%);
+  clip-path: url(#courseTopCurve);
 }
+/* .courses-row1 {
+  padding-top: 100px;
+}*/
 .courses h1 {
   color: #fff;
   width: 85%;
   margin: auto;
-  padding: 50px 0;
+  padding: 140px 0 90px 0;
 }
 .courses div {
   display: flex;
@@ -914,8 +959,9 @@ ul li:hover {
   margin: 100px auto 0 auto;
   background: #47c1bd;
   border-radius: 25px;
-  padding: 50px 40px 20px 40px;
+  padding: 40px 40px 20px 40px;
 }
+
 .contact .left {
   width: 40%;
 }
@@ -1013,6 +1059,7 @@ footer ul p {
   padding-bottom: 15px;
 }
 footer ul li {
+  cursor: pointer;
   font-weight: bold;
   padding: 0 0 15px 0;
   list-style-type: none;
@@ -1021,15 +1068,16 @@ footer .social p {
   padding-bottom: 20px;
 }
 footer .social span {
-  display: flex; 
+  display: flex;
   width: 120px;
   justify-content: space-between;
   align-items: center;
 }
 footer .social span div {
-  background: linear-gradient(115.59deg, #FC9F31 4.05%, #EE4E4E 107.24%);;
-width: 35px;
-height: 35px;
+  cursor: pointer;
+  background: linear-gradient(115.59deg, #fc9f31 4.05%, #ee4e4e 107.24%);
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   text-align: center;
   position: relative;
@@ -1042,6 +1090,10 @@ footer .social span div svg {
   transform: translate(-50%, -50%);
   padding: 1px;
 }
+#svg {
+  width: 0px;
+  height: 0px;
+}
 #end {
   position: absolute;
   bottom: 0%;
@@ -1050,8 +1102,10 @@ footer .social span div svg {
   width: 70%;
   height: 10px;
   margin: auto;
-  background: linear-gradient(122.62deg, #FFD645 13.14%, #FFC700 50.21%);
-box-shadow: 0px 50px 60px rgba(12, 123, 120, 0.1);
-border-radius: 30px 30px 0px 0px;
+  background: linear-gradient(122.62deg, #ffd645 13.14%, #ffc700 50.21%);
+  box-shadow: 0px 50px 60px rgba(12, 123, 120, 0.1);
+  border-radius: 30px 30px 0px 0px;
+}
+@media only screen and (max-width: 700px) {
 }
 </style>

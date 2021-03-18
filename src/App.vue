@@ -22,6 +22,7 @@ export default {
   box-sizing: border-box;
   max-width: 100%;
   -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
 }
 #app {
   font-family: DM sans, Helvetica, Arial, sans-serif;
