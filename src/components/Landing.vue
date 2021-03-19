@@ -144,7 +144,7 @@
 
     <div class="partners" id="partners">
       <h1>Our Partners</h1>
-      <transition name="partnerRow1">
+      <transition name="row1">
         <div class="logo-row1" v-if="classes.toggle_partner_row1">
           <span class="leftTop">
             <svg
@@ -244,7 +244,7 @@
         </div>
       </transition>
 
-      <transition name="partnerRow2">
+      <transition name="row2">
         <div class="logo-row2" v-if="classes.toggle_partner_row2">
           <span class="center">
             <svg
@@ -434,42 +434,67 @@
     <div class="courses" id="courses">
       <h1>Courses</h1>
 
-      <div class="courses-row1" v-if="classes.toggle_course_row1">
-        <span
-          ><img src="@/assets/courses1.png" alt="" />
-          <p>Website Design and Development</p>
-          <small>Starting from N30,000</small>
-        </span>
-        <span
-          ><img src="@/assets/courses2.png" alt="" />
-          <p>Design Bootcamp</p>
-          <small>Starting from N45,000</small>
-        </span>
-        <span
-          ><img src="@/assets/courses3.png" alt="" />
-          <p>3d Design Illustration</p>
-          <small>12th Feb - 08th Mar 2020</small>
-        </span>
-      </div>
+      <transition name="row1">
+        <div class="courses-row1" v-if="classes.toggle_course_row1">
+          <span
+            ><img src="@/assets/courses1.png" alt="" />
+            <p>Website Design and Development</p>
+            <small>Starting from N30,000</small>
+          </span>
+          <span
+            ><img src="@/assets/courses2.png" alt="" />
+            <p>Design Bootcamp</p>
+            <small>Starting from N45,000</small>
+          </span>
+          <span
+            ><img src="@/assets/courses3.png" alt="" />
+            <p>3d Design Illustration</p>
+            <small>12th Feb - 08th Mar 2020</small>
+          </span>
+        </div>
+      </transition>
 
-      <div class="courses-row2" v-if="classes.toggle_course_row2">
-        <span
-          ><img src="@/assets/courses4.png" alt="" />
-          <p>Design Bootcamp</p>
-          <small>12th Feb - 08th Mar 2020</small>
-        </span>
-        <span
-          ><img src="@/assets/courses5.png" alt="" />
-          <p>Design Bootcamp</p>
-          <small>12th Feb - 08th Mar 2020</small>
-        </span>
-        <span
-          ><img src="@/assets/courses6.png" alt="" />
-          <p>Design Bootcamp</p>
-          <small>12th Feb - 08th Mar 2020</small>
-        </span>
-      </div>
+      <transition name="row2">
+        <div class="courses-row2" v-if="classes.toggle_course_row2">
+          <span
+            ><img src="@/assets/courses4.png" alt="" />
+            <p>Design Bootcamp</p>
+            <small>12th Feb - 08th Mar 2020</small>
+          </span>
+          <span
+            ><img src="@/assets/courses5.png" alt="" />
+            <p>Design Bootcamp</p>
+            <small>12th Feb - 08th Mar 2020</small>
+          </span>
+          <span
+            ><img src="@/assets/courses6.png" alt="" />
+            <p>Design Bootcamp</p>
+            <small>12th Feb - 08th Mar 2020</small>
+          </span>
+        </div>
+      </transition>
     </div>
+
+    <section class="partner-slide-button">
+      <span
+        @click="
+          (classes.toggle_course_row2 = !classes.toggle_course_row2),
+            (classes.toggle_course_row1 = !classes.toggle_course_row1)
+        "
+        :class="{
+          partnerSlideButtonBackground: classes.toggle_course_row1,
+        }"
+      ></span>
+      <span
+        @click="
+          (classes.toggle_course_row2 = !classes.toggle_course_row2),
+            (classes.toggle_course_row1 = !classes.toggle_course_row1)
+        "
+        :class="{
+          partnerSlideButtonBackground: classes.toggle_course_row2,
+        }"
+      ></span>
+    </section>
 
     <div class="contact-body" id="contact">
       <div class="contact">
@@ -599,18 +624,39 @@
               Z"
           />
         </clipPath>
-      </defs></svg
-    ><svg width="0" height="0">
+      </defs>
+    </svg>
+    
+    <svg width="0" height="0">
       <defs>
         <clipPath id="courseTopCurve" clipPathUnits="objectBoundingBox">
           <path
             d="M 0 .1
-                   C 0.1 0 .2 .1 .35 .19 
-                   C  0.6 0.3 0.9 0 1 .1
+                   C 0.1 0 .2 .1 .35 .15
+                   C  0.6 0.2 0.9 0 1 .1
                    C 1 -.1 1 0 1 .99
                    L 1 .88
                    C .7 1 .7 1 .6 .88
                    C .5 .8 .5 .88 0 1
+                   L 0 1
+                   Z
+                  "
+          />
+        </clipPath>
+      </defs>
+    </svg>
+
+    <svg width="0" height="0">
+      <defs>
+        <clipPath id="cCurve" clipPathUnits="objectBoundingBox">
+          <path
+            d="M 0 .1
+                   C 0.1 0.07 .2 .1 .35 .1
+                   C  0.6 0.1 0.9 0 1 .1
+                   C 1 -.1 1 0 1 .99
+                   L 1 .98
+                   C .7 .99 .7 .9 .5 .95
+                   C .3 .99 .3 .99 0 1
                    L 0 1
                    Z
                   "
@@ -681,6 +727,7 @@ a {
   background: #f3f7fc;
   position: relative;
   overflow-x: hidden;
+  transition: all 0.4s ease;
 }
 .head nav {
   display: flex;
@@ -992,6 +1039,9 @@ nav > ul li:hover {
   object-fit: contain;
   border-radius: 20px;
 }
+.events div span {
+  border-radius: 20px;
+}
 .events div span:nth-child(2) {
   padding: 0 20px;
 }
@@ -1204,6 +1254,9 @@ footer .social span div svg {
     width: 20px;
     /* height: 2px; */
   }
+  .circles .md-blue-circle {
+    display: none;
+  }
   .burger::before {
     content: "";
     display: block;
@@ -1338,9 +1391,9 @@ footer .social span div svg {
   .partnerSlideButtonBackground {
     background: #aaadb0 !important;
   }
-  .partnerRow1-enter-active,
+  .row1-enter-active,
   .partner-Row1-leave-active,
-  .partnerRow2-enter-active,
+  .row2-enter-active,
   .partner-Row2-leave-active,
   .mobnav-enter-active,
   .mobnav-leave-active,
@@ -1348,23 +1401,23 @@ footer .social span div svg {
   .overlay-leave-active {
     transition: all 0.4s ease-in-out;
   }
-  .partnerRow1-enter-from,
-  .partnerRow1-leave-to {
+  .row1-enter-from,
+  .row1-leave-to {
     transform: translateX(-50%);
     opacity: 0;
   }
-  .partnerRow1-enter-to,
-  .partnerRow1-leave-from {
+  .row1-enter-to,
+  .row1-leave-from {
     transform: translateX(0%);
     opacity: 1;
   }
-  .partnerRow2-enter-from,
-  .partnerRow2-leave-to {
+  .row2-enter-from,
+  .row2-leave-to {
     transform: translateX(50%);
     opacity: 0;
   }
-  .partnerRow2-enter-to,
-  .partnerRow2-leave-from {
+  .row2-enter-to,
+  .row2-leave-from {
     transform: translateX(0%);
     opacity: 1;
   }
@@ -1386,8 +1439,45 @@ footer .social span div svg {
     width: 90%;
     height: auto;
   }
-  .events-row1 {
+  .events div {
     flex-direction: column;
+    /* height: 800px; */
+  }
+  .events svg {
+    display: none;
+  }
+  .events div span {
+    width: 80%;
+    /* height: 200px; */
+  }
+  .events div span:nth-child(2) {
+    padding: 30px 0 0 0;
+  }
+  .events div span img {
+    width: 100%;
+    height: auto;
+    object-fit: unset;
+  }
+  .courses {
+    clip-path: url(#cCurve);
+  }
+  .courses h1 {
+    transform: translateY(150px);
+    padding: 100px 0 50px 0;
+  }
+  .courses div {
+    flex-direction: column;
+    padding: 150px 0 0 0;
+  }
+  .courses div span {
+    width: 80%;
+  }
+  .courses div span:nth-child(2) {
+    padding: 50px 0;
+  }
+  .courses div span img {
+    width: 100%;
+    height: auto;
   }
   .contact {
     width: 85%;
