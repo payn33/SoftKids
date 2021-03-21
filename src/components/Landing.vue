@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body" :class="{ fixed: classes.burger }">
     <transition name="overlay">
       <div class="overlay" v-if="classes.burger"></div>
     </transition>
@@ -104,15 +104,13 @@
         </svg>
       </div>
       <div class="right">
-        <!-- <div class="right-content"> -->
-        <div class="circles">
-          <div class="sm-yellow-circle"></div>
-          <div class="md-blue-circle"></div>
+        <div class="right-content">
+          <div class="circles">
+            <div class="sm-yellow-circle"></div>
+            <div class="md-blue-circle"></div>
+          </div>
+          <img src="@/assets/child.png" alt="" />
         </div>
-
-        <img src="@/assets/child.png" alt="" />
-
-        <!-- </div> -->
       </div>
       <div class="text">
         <h1>The New</h1>
@@ -127,6 +125,7 @@
           <span><i class="fas fa-angle-right"></i></span>
         </button>
       </div>
+
       <div class="bottom-circle">
         <div class="astronaut-box">
           <p>Jessica Ikechukwu</p>
@@ -343,7 +342,7 @@
           </span>
         </div>
       </transition>
-      <section class="partner-slide-button">
+      <section class="slide-button">
         <span
           @click="
             (classes.toggle_partner_row2 = !classes.toggle_partner_row2),
@@ -475,7 +474,7 @@
       </transition>
     </div>
 
-    <section class="partner-slide-button">
+    <section class="slide-button">
       <span
         @click="
           (classes.toggle_course_row2 = !classes.toggle_course_row2),
@@ -620,13 +619,14 @@
               L 8 0 
               L 8 .8
               C .5 1.4 .5 .9 .45 .7
-              C .4 .4 .3 .4 -.1 .3
+              C .4 .4 .3 .4 .17 .3
+              C 0 0.2 0 0.1 0 0 Z
               Z"
           />
         </clipPath>
       </defs>
     </svg>
-    
+
     <svg width="0" height="0">
       <defs>
         <clipPath id="courseTopCurve" clipPathUnits="objectBoundingBox">
@@ -664,6 +664,23 @@
         </clipPath>
       </defs>
     </svg>
+    <svg width="0" height="0">
+      <defs>
+        <clipPath id="rCurve" clipPathUnits="objectBoundingBox">
+          <path
+            d="M 0 .5
+                   C 0.4 0.4 .2 .3 .35 .2
+                   C  0.6 0.1 0.9 0 1 0
+                   C 1 -.1 1 0 1 .99
+                   L 1 .85
+                   C .5 .99 .5 .99 0 .85
+                   L 0 1
+                   Z
+                  "
+          />
+        </clipPath>
+      </defs>
+    </svg>
   </div>
 </template>
 
@@ -692,6 +709,8 @@ export default {
       console.log(togCarousel);
     };
 
+    window.addEventListener("resize", console.log("logged"));
+
     const toggleCarousel = (size) => {
       if (size <= 700) {
         (classes.value.toggle_course_row2 = false),
@@ -703,11 +722,11 @@ export default {
       windowSize();
       toggleCarousel(togCarousel);
     });
-    //onbeforemount for windowsize and togCarousel
-    // setInterval(() => {
-    //   windowSize();
-    //   toggleCarousel(togCarousel);
-    // }, 500);
+    setInterval(() => {
+      windowSize();
+      toggleCarousel(togCarousel);
+      console.log("logged");
+    }, 10000);
     return {
       classes,
       windowSize,
@@ -728,6 +747,9 @@ a {
   position: relative;
   overflow-x: hidden;
   transition: all 0.4s ease;
+}
+.fixed {
+  position: fixed;
 }
 .head nav {
   display: flex;
@@ -784,7 +806,7 @@ nav > ul li:hover {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(122.62deg, #ffd645 13.14%, #ffc700 50.21%);
   clip-path: url(#leftCurve);
 }
@@ -850,24 +872,24 @@ nav > ul li:hover {
   padding: 5px 10px;
   border-radius: 50px;
 }
-.right .circles {
+.circles {
   display: flex;
   position: absolute;
-  top: 20%;
-  left: 30%;
+  bottom: 500px;
+  right: 50%;
   z-index: 999;
-  width: 50%;
+  width: 65%;
   justify-content: space-between;
   align-items: center;
   transform: rotate(-10deg);
 }
-.right .sm-yellow-circle {
+.sm-yellow-circle {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background: #ffd334;
 }
-.right .md-blue-circle {
+.md-blue-circle {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -880,16 +902,36 @@ nav > ul li:hover {
   top: 0;
   background: linear-gradient(115.59deg, #fc9f31 4.05%, #ee4e4e 107.24%);
   right: 0;
-  height: 100vh;
+  height: 100%;
   /* z-index: 98; */
   clip-path: url(#rightCurve);
 }
-.right img {
-  width: 450px;
-  height: 350px;
+
+.right-content {
+  display: flex;
+  /* position: absolute; */
+  align-items: center;
+  width: 60%;
+  bottom: 0px;
+  left: 30%;
+  height: 100%;
+  margin: auto;
+  flex-direction: column;
+}
+/* .head .right-content > .img {
   position: absolute;
-  top: 20%;
-  left: 15%;
+  left: 50%;
+  bottom: 0%;
+  transform: translateX(-50%);
+  height: 50%;
+} */
+.right-content img {
+  max-width: 600px;
+  max-height: 540px;
+  position: absolute;
+  bottom: 2%;
+  left: 10%;
+  transform: translateX(-50%);
 }
 .bottom-circle {
   position: absolute;
@@ -904,6 +946,7 @@ nav > ul li:hover {
   background: #fff;
   border-radius: 20px;
   width: 200px;
+  /* height: 100px; */
   padding: 10px;
   position: relative;
 }
@@ -944,7 +987,7 @@ nav > ul li:hover {
 .logo-row2 span:first-of-type {
   flex-direction: column;
 }
-.partner-slide-button {
+.slide-button {
   display: none;
 }
 .about {
@@ -959,7 +1002,7 @@ nav > ul li:hover {
   display: flex;
   justify-content: space-between;
 }
-.about .img {
+.about > .img {
   width: 45%;
 }
 .about .about-text {
@@ -972,7 +1015,7 @@ nav > ul li:hover {
   padding-bottom: 20px;
   text-align: left;
 }
-.about .img img {
+.about > .img img {
   border-radius: 30px;
 }
 .about .about-text {
@@ -1245,6 +1288,33 @@ footer .social span div svg {
 }
 
 @media only screen and (max-width: 700px) {
+  .head .left {
+    height: 80%;
+    clip-path: unset;
+  }
+  .head .right {
+    top: unset;
+    bottom: 0px;
+    height: 80%;
+    width: 100%;
+    clip-path: url(#rCurve);
+  }
+  .text h1 {
+    font-size: 30px;
+  }
+  .bottom-circle {
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -95%) rotate(10deg);
+  }
+  .right-content {
+    width: 100%;
+    /* left: 30%;
+    bottom: 0%;
+    transform: translateX(-50%); */
+  }
+  .right-content img {
+  }
   nav ul {
     display: none;
   }
@@ -1256,6 +1326,12 @@ footer .social span div svg {
   }
   .circles .md-blue-circle {
     display: none;
+  }
+  .sm-yellow-circle {
+    position: absolute;
+    top: 10%;
+    right: 0px;
+    background: linear-gradient(90deg, #1cd8d2 0%, #93edc7 100%);
   }
   .burger::before {
     content: "";
@@ -1360,6 +1436,9 @@ footer .social span div svg {
     grid-area: rightBottom;
     justify-content: flex-end;
   }
+  .partners {
+    padding-top: 100px;
+  }
   .partners div {
     display: grid;
     grid-template-areas:
@@ -1373,13 +1452,13 @@ footer .social span div svg {
   .partners div:first-of-type {
     padding-bottom: 0px;
   }
-  .partner-slide-button {
+  .slide-button {
     display: flex;
     width: 100%;
     justify-content: center;
     padding-top: 30px;
   }
-  .partner-slide-button span {
+  .slide-button span {
     cursor: pointer;
     width: 15px;
     height: 15px;
@@ -1431,11 +1510,11 @@ footer .social span div svg {
     padding-top: 40px;
     transform: translateY(0px);
   }
-  .about .img {
+  .about > .img {
     width: 100%;
     text-align: center;
   }
-  .about .img img {
+  .about > .img img {
     width: 90%;
     height: auto;
   }
@@ -1448,7 +1527,8 @@ footer .social span div svg {
   }
   .events div span {
     width: 80%;
-    /* height: 200px; */
+    height: 200px;
+    transform: translate(0px);
   }
   .events div span:nth-child(2) {
     padding: 30px 0 0 0;
