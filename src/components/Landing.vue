@@ -835,6 +835,7 @@ nav > ul li:hover {
   height: 100%;
   background: linear-gradient(122.62deg, #ffd645 13.14%, #ffc700 50.21%);
   clip-path: url(#leftCurve);
+  -webkit-clip-path: url(#leftCurve);
 }
 #half-circle {
   position: absolute;
@@ -931,6 +932,7 @@ nav > ul li:hover {
   height: 100%;
   /* z-index: 98; */
   clip-path: url(#rightCurve);
+  -webkit-clip-path: url(#rightCurve);
 }
 
 .right-content {
@@ -1130,6 +1132,7 @@ nav > ul li:hover {
   padding-bottom: 20%;
   background: linear-gradient(115.59deg, #fc9f31 4.05%, #ee4e4e 107.24%);
   clip-path: url(#courseTopCurve);
+  -webkit-clip-path: url(#courseTopCurve);
 }
 /* .courses-row1 {
   padding-top: 100px;
@@ -1317,6 +1320,7 @@ footer .social span div svg {
   .head .left {
     height: 80%;
     clip-path: unset;
+    -webkit-clip-path: unset;
   }
   .head .right {
     top: unset;
@@ -1324,6 +1328,7 @@ footer .social span div svg {
     height: 80%;
     width: 100%;
     clip-path: url(#rCurve);
+    -webkit-clip-path: url(#rCurve);
   }
   .text h1 {
     font-size: 30px;
@@ -1572,6 +1577,7 @@ footer .social span div svg {
   }
   .courses {
     clip-path: url(#cCurve);
+    -webkit-clip-path: url(#cCurve);
   }
   .courses h1 {
     transform: translateY(150px);
