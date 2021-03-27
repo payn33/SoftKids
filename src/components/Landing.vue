@@ -66,13 +66,16 @@
           <a href="#about">
             <li>About</li>
           </a>
-          <a href="#contact">
-            <li>Contact</li>
-          </a>
+
           <a href="#courses">
             <li>Courses</li>
           </a>
-          <li>Register</li>
+          <a href="#contact">
+            <li>Contact</li>
+          </a>
+          <a href="mailto:">
+            <li>Register</li>
+          </a>
         </ul>
       </nav>
       <div class="left">
@@ -109,7 +112,7 @@
             <div class="sm-yellow-circle"></div>
             <div class="md-blue-circle"></div>
           </div>
-          <img src="@/assets/child.png" alt="" />
+          <img class="img" src="@/assets/child.png" alt="child" rel="preload" />
         </div>
       </div>
       <div class="text">
@@ -552,7 +555,7 @@
           <p>No 15 uti street off ovie palace road,</p>
           <p>Effurun, Delta State Nigeria.</p>
         </div>
-        <form novalidate @submit.prevent>
+        <form @submit.prevent="check()" novalidate>
           <span>
             <input
               type="text"
@@ -574,10 +577,12 @@
             v-model="classes.email.content"
           >
           </textarea>
-          <button>
+         <a :href="'mailto:' + 'me'">
+            <button>
             <p>Contact Us</p>
             <span><i class="fas fa-angle-right"></i></span>
           </button>
+         </a>
         </form>
       </div>
     </div>
@@ -762,12 +767,18 @@ export default {
       toggle_partner_row2: true,
       burger: false,
       emailId: "Soft-kode@gmail.com",
+      mail: '',
       email: {
         cc: "",
         subject: "",
         content: "",
       },
     });
+     
+    const check = () => {
+      classes.value.mail = 'mailto:' + classes.value.email.cc 
+      console.log('log');
+    }
 
     let togCarousel = ref();
 
@@ -776,7 +787,6 @@ export default {
         window.innerWidth ||
         document.documentElement.clientWidth ||
         document.body.clientWidth;
-      console.log(togCarousel);
     };
 
     const toggleCarousel = (size) => {
@@ -797,10 +807,10 @@ export default {
     setInterval(() => {
       windowSize();
       toggleCarousel(togCarousel);
-      console.log("logged");
     }, 10000);
     return {
       classes,
+      check,
       windowSize,
       toggleCarousel,
     };
@@ -999,7 +1009,7 @@ nav > ul li:hover {
   transform: translateX(-50%);
   height: 50%;
 } */
-.right-content img {
+.right-content .img {
   max-width: 600px;
   max-height: 540px;
   position: absolute;
@@ -1116,7 +1126,7 @@ nav > ul li:hover {
 }
 .events {
   width: 100%;
-  height: 100vh;
+  height: 50vh;
   margin-top: 50px;
   padding-top: 70px;
   position: relative;
@@ -1628,11 +1638,14 @@ footer .social span div svg {
     width: 90%;
     height: auto;
   }
+  .events {
+    height: 750px;
+  }
   .events .eventCarouselCon {
     height: 720px;
     position: absolute;
 
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
