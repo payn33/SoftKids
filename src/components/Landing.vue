@@ -1646,6 +1646,7 @@ footer .social span div svg {
     flex-direction: column;
     padding: 90px 0 0 0;
     width: 75%;
+    height: 1000px;
     position: absolute;
     top: 55%;
     left: 50%;
