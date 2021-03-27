@@ -72,7 +72,7 @@
           <a href="#courses">
             <li>Courses</li>
           </a>
-          <li @click="windowSize()">Register</li>
+          <li>Register</li>
         </ul>
       </nav>
       <div class="left">
@@ -342,27 +342,28 @@
           </span>
         </div>
       </transition>
-      <section class="slide-button">
-        <span
-          @click="
-            (classes.toggle_partner_row2 = !classes.toggle_partner_row2),
-              (classes.toggle_partner_row1 = !classes.toggle_partner_row1)
-          "
-          :class="{
-            partnerSlideButtonBackground: classes.toggle_partner_row1,
-          }"
-        ></span>
-        <span
-          @click="
-            (classes.toggle_partner_row2 = !classes.toggle_partner_row2),
-              (classes.toggle_partner_row1 = !classes.toggle_partner_row1)
-          "
-          :class="{
-            partnerSlideButtonBackground: classes.toggle_partner_row2,
-          }"
-        ></span>
-      </section>
     </div>
+
+    <section class="slide-button">
+      <span
+        @click="
+          (classes.toggle_partner_row2 = !classes.toggle_partner_row2),
+            (classes.toggle_partner_row1 = !classes.toggle_partner_row1)
+        "
+        :class="{
+          partnerSlideButtonBackground: classes.toggle_partner_row1,
+        }"
+      ></span>
+      <span
+        @click="
+          (classes.toggle_partner_row2 = !classes.toggle_partner_row2),
+            (classes.toggle_partner_row1 = !classes.toggle_partner_row1)
+        "
+        :class="{
+          partnerSlideButtonBackground: classes.toggle_partner_row2,
+        }"
+      ></span>
+    </section>
 
     <div class="about" id="about">
       <h1>About Softkids</h1>
@@ -425,36 +426,36 @@
           <span><img src="@/assets/event3.png" alt="" /></span>
         </div>
       </transition>
-      
-      <transition name="row2"> 
-        <div class="events-row2" v-if="classes.toggle_event_row2">
-        <span><img src="@/assets/event4.png" alt="" /></span>
-        <span><img src="@/assets/event5.png" alt="" /></span>
-        <span><img src="@/assets/event6.png" alt="" /></span>
-      </div>
-      </transition>
 
-      <section class="slide-button">
-        <span
-          @click="
-            (classes.toggle_event_row2 = !classes.toggle_event_row2),
-              (classes.toggle_event_row1 = !classes.toggle_event_row1)
-          "
-          :class="{
-            partnerSlideButtonBackground: classes.toggle_event_row1,
-          }"
-        ></span>
-        <span
-          @click="
-            (classes.toggle_event_row2 = !classes.toggle_event_row2),
-              (classes.toggle_event_row1 = !classes.toggle_event_row1)
-          "
-          :class="{
-            partnerSlideButtonBackground: classes.toggle_event_row2,
-          }"
-        ></span>
-      </section>
+      <transition name="row2">
+        <div class="events-row2" v-if="classes.toggle_event_row2">
+          <span><img src="@/assets/event4.png" alt="" /></span>
+          <span><img src="@/assets/event5.png" alt="" /></span>
+          <span><img src="@/assets/event6.png" alt="" /></span>
+        </div>
+      </transition>
     </div>
+
+    <section class="slide-button btn-pad">
+      <span
+        @click="
+          (classes.toggle_event_row2 = !classes.toggle_event_row2),
+            (classes.toggle_event_row1 = !classes.toggle_event_row1)
+        "
+        :class="{
+          partnerSlideButtonBackground: classes.toggle_event_row1,
+        }"
+      ></span>
+      <span
+        @click="
+          (classes.toggle_event_row2 = !classes.toggle_event_row2),
+            (classes.toggle_event_row1 = !classes.toggle_event_row1)
+        "
+        :class="{
+          partnerSlideButtonBackground: classes.toggle_event_row2,
+        }"
+      ></span>
+    </section>
 
     <div class="courses" id="courses">
       <h1>Courses</h1>
@@ -525,17 +526,33 @@
       <div class="contact">
         <div class="left">
           <h2>Contact Us</h2>
-          <p>+234 90110309271</p>
-          <p>dosamarvis@gmail.com</p>
+          <p>+234 8131147401</p>
+          <p>{{ classes.emailId }}</p>
           <p>No 15 uti street off ovie palace road,</p>
           <p>Effurun, Delta State Nigeria.</p>
         </div>
-        <form>
+        <form novalidate @submit.prevent>
           <span>
-            <input type="text" required placeholder="Name" />
-            <input type="text" required placeholder="Subject" />
+            <input
+              type="text"
+              required
+              placeholder="Email"
+              v-model="classes.email.cc"
+            />
+            <input
+              type="text"
+              required
+              placeholder="Subject"
+              v-model="classes.email.subject"
+            />
           </span>
-          <textarea cols="30" rows="10" placeholder="Content"> </textarea>
+          <textarea
+            cols="30"
+            rows="10"
+            placeholder="Content"
+            v-model="classes.email.content"
+          >
+          </textarea>
           <button>
             <p>Contact Us</p>
             <span><i class="fas fa-angle-right"></i></span>
@@ -723,6 +740,12 @@ export default {
       toggle_partner_row1: true,
       toggle_partner_row2: true,
       burger: false,
+      emailId: "Soft-kode@gmail.com",
+      email: {
+        cc: "",
+        subject: "",
+        content: "",
+      },
     });
 
     let togCarousel = ref();
@@ -735,24 +758,27 @@ export default {
       console.log(togCarousel);
     };
 
-    window.addEventListener("resize", console.log("logged"));
 
     const toggleCarousel = (size) => {
       if (size <= 700) {
+              (classes.value.toggle_course_row1 = true),
+          (classes.value.toggle_event_row1 = true),
+          (classes.value.toggle_partner_row1 = true),
         (classes.value.toggle_course_row2 = false),
           (classes.value.toggle_event_row2 = false),
           (classes.value.toggle_partner_row2 = false);
       }
     };
+
     onMounted(() => {
       windowSize();
       toggleCarousel(togCarousel);
     });
-    // setInterval(() => {
-    //   windowSize();
-    //   toggleCarousel(togCarousel);
-    //   console.log("logged");
-    // }, 10000);
+    setInterval(() => {
+      windowSize();
+      toggleCarousel(togCarousel);
+      console.log("logged");
+    }, 10000);
     return {
       classes,
       windowSize,
@@ -1070,12 +1096,15 @@ nav > ul li:hover {
 }
 .events {
   width: 100%;
-  /* height: 100vh; */
+  height: 100vh;
   margin-top: 50px;
   padding-top: 70px;
   position: relative;
   border-radius: 30% 70% 100% 0% / 45% 30% 0% 10%;
   border-top: 2px solid rgb(247, 111, 111, 0.4);
+}
+.btn-pad {
+  padding-top: 50px;
 }
 .events::before {
   content: "Events";
@@ -1147,7 +1176,7 @@ nav > ul li:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 85%;
   margin: auto;
   padding-bottom: 50px;
 }
@@ -1467,10 +1496,31 @@ footer .social span div svg {
     grid-area: rightBottom;
     justify-content: flex-end;
   }
+  #courses,
+  #events {
+    position: relative;
+  }
+  #partnerButton {
+    position: absolute;
+    bottom: 0;
+  }
+  #eventButton {
+    position: absolute;
+    bottom: 0px;
+  }
+  #courseButton {
+  }
+ 
   .partners {
     padding-top: 100px;
+    height: 380px;
+    position: relative;
   }
   .partners div {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: grid;
     grid-template-areas:
       "leftTop leftTop leftTop rightTop rightTop rightTop"
@@ -1487,7 +1537,10 @@ footer .social span div svg {
     display: flex;
     width: 100%;
     justify-content: center;
-    padding-top: 30px;
+  }
+  .slide-btn-position {
+    position: absolute;
+    bottom: 0px;
   }
   .slide-button span {
     cursor: pointer;
@@ -1513,22 +1566,22 @@ footer .social span div svg {
   }
   .row1-enter-from,
   .row1-leave-to {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
     opacity: 0;
   }
   .row1-enter-to,
   .row1-leave-from {
-    transform: translateX(0%);
+    transform: translateX(-50%);
     opacity: 1;
   }
   .row2-enter-from,
   .row2-leave-to {
-    transform: translateX(50%);
+    transform: translateX(100%);
     opacity: 0;
   }
   .row2-enter-to,
   .row2-leave-from {
-    transform: translateX(0%);
+    transform: translateX(-50%);
     opacity: 1;
   }
   .about .about-content {
@@ -1552,30 +1605,36 @@ footer .social span div svg {
   .events div {
     flex-direction: column;
     height: 720px;
+    padding-top: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .events svg {
     display: none;
   }
   .events div span {
     width: 85%;
-  min-height: 140px;
+    min-height: 140px;
     max-height: 200px;
     transform: translate(0px) !important;
   }
   .events div span:nth-child(2) {
     margin: 30px 0px;
-        padding: 0px;
-
+    padding: 0px;
   }
   .events div span:nth-child(3) {
     /* transform: translateY(0px) */
   }
+
   .events div span img {
     width: 100%;
     height: 100%;
     object-fit: unset;
   }
   .courses {
+    height: 1300px;
     clip-path: url(#cCurve);
     -webkit-clip-path: url(#cCurve);
   }
@@ -1585,7 +1644,12 @@ footer .social span div svg {
   }
   .courses div {
     flex-direction: column;
-    padding: 150px 0 0 0;
+    padding: 90px 0 0 0;
+    width: 75%;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .courses div span {
     width: 80%;
