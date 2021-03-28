@@ -1,5 +1,10 @@
 <template>
   <div class="body">
+    <div class="prompt" v-for="(msg, index) in classes.prompts" :key="index">
+      <transition-group name="prompt">
+        <div v-if="classes.prompts">{{msg}}</div>
+      </transition-group>
+    </div>
     <transition name="overlay">
       <div class="overlay" v-if="classes.burger"></div>
     </transition>
@@ -39,12 +44,13 @@
           <a href="#about" @click="classes.burger = !classes.burger">
             <li>About</li>
           </a>
-          <a href="#contact" @click="classes.burger = !classes.burger">
-            <li>Contact</li>
-          </a>
           <a href="#courses" @click="classes.burger = !classes.burger">
             <li>Courses</li>
           </a>
+          <a href="#contact" @click="classes.burger = !classes.burger">
+            <li>Contact</li>
+          </a>
+
           <li @click="classes.burger = !classes.burger">Register</li>
         </ul>
       </div>
@@ -73,9 +79,7 @@
           <a href="#contact">
             <li>Contact</li>
           </a>
-          <a href="mailto:">
-            <li>Register</li>
-          </a>
+          <li>Register</li>
         </ul>
       </nav>
       <div class="left">
@@ -123,10 +127,12 @@
           >We are in charge of creating the next generation of wold tech leaders
         </small>
         <small>in making the society a better place in tech</small>
-        <button>
-          <p>Contact Us</p>
-          <span><i class="fas fa-angle-right"></i></span>
-        </button>
+        <a href="#contact">
+          <button>
+            <p>Contact Us</p>
+            <span><i class="fas fa-angle-right"></i></span>
+          </button>
+        </a>
       </div>
 
       <div class="bottom-circle">
@@ -400,10 +406,12 @@
             amet.Amet minim mollit non deserunt
           </p>
 
-          <button>
-            <p>Contact Us</p>
-            <span><i class="fas fa-angle-right"></i></span>
-          </button>
+          <a href="#contact">
+            <button>
+              <p>Contact Us</p>
+              <span><i class="fas fa-angle-right"></i></span>
+            </button>
+          </a>
         </div>
       </div>
     </div>
@@ -555,19 +563,19 @@
           <p>No 15 uti street off ovie palace road,</p>
           <p>Effurun, Delta State Nigeria.</p>
         </div>
-        <form @submit.prevent="check()" novalidate>
+        <form novalidate @submit.prevent="send()">
           <span>
             <input
               type="text"
               required
               placeholder="Email"
-              v-model="classes.email.cc"
+              v-model="classes.email.mail"
             />
             <input
               type="text"
               required
-              placeholder="Subject"
-              v-model="classes.email.subject"
+              placeholder="Name"
+              v-model="classes.email.name"
             />
           </span>
           <textarea
@@ -577,12 +585,11 @@
             v-model="classes.email.content"
           >
           </textarea>
-         <a :href="'mailto:' + 'me'">
-            <button>
+
+          <button>
             <p>Contact Us</p>
             <span><i class="fas fa-angle-right"></i></span>
           </button>
-         </a>
         </form>
       </div>
     </div>
@@ -755,6 +762,7 @@
 
 <script>
 // import { ref } from "vue";
+import emailjs from "emailjs-com";
 import { ref, onMounted } from "vue";
 export default {
   setup() {
@@ -766,19 +774,79 @@ export default {
       toggle_partner_row1: true,
       toggle_partner_row2: true,
       burger: false,
-      emailId: "Soft-kode@gmail.com",
-      mail: '',
+      validEmail: (email) => {
+        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      },
+      emailId: "jondough@gmail.com",
       email: {
-        cc: "",
-        subject: "",
+        mail: "",
+        name: "",
         content: "",
       },
+      prompts: [
+      ],
     });
-     
-    const check = () => {
-      classes.value.mail = 'mailto:' + classes.value.email.cc 
-      console.log('log');
-    }
+
+    const send = () => {
+      if (
+        !classes.value.validEmail(classes.value.email.mail) ||
+        classes.value.mail == ""
+      ) {
+        // alert("invalid email address");
+        classes.value.prompts.push("invalid email address")
+         setTimeout(() => {
+                classes.value.prompts.pop()
+              }, 3000);
+      } else if (!classes.value.email.name) {
+        classes.value.prompts.push("name cannot be empty");
+         setTimeout(() => {
+                classes.value.prompts.pop()
+              }, 3000);
+      } else {
+        sending();
+      }
+    };
+
+    const sending = () => {
+      try {
+        emailjs
+          .send(
+            "test_id",
+            "test_templateid",
+            {
+              email: classes.value.email.mail,
+              name: classes.value.email.subject,
+              message: classes.value.email.content,
+            },
+            "user_seAFh8PbzY2Nky73pYLQJ"
+          )
+          .then((response) => {
+            console.log(response.status);
+            if (response.status === 200) {
+              classes.value.prompts.push("Sent successfully");
+              setTimeout(() => {
+                classes.value.prompts.pop()
+              }, 3000);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            classes.value.prompts.push("an error occured, please try again");
+             setTimeout(() => {
+                classes.value.prompts.pop()
+              }, 3000);
+          });
+      } catch (error) {
+        classes.value.prompts.push("an error occured, please try again");
+         setTimeout(() => {
+                classes.value.prompts.pop()
+              }, 3000);
+      }
+      classes.value.email.mail = "";
+      classes.value.email.name = "";
+      classes.value.email.content = "";
+    };
 
     let togCarousel = ref();
 
@@ -810,7 +878,8 @@ export default {
     }, 10000);
     return {
       classes,
-      check,
+      send,
+      sending,
       windowSize,
       toggleCarousel,
     };
@@ -819,6 +888,23 @@ export default {
 </script>
 
 <style scoped>
+.prompt {
+  width: 100%;
+  height: 30%;
+  position: fixed;
+  top: 0px;
+  height: 100px;
+  padding-top: 20px;
+  z-index: 98;
+}
+.prompt div {
+  width: 55%;
+  text-align: center;
+  margin: auto;
+    padding: 20px;
+background: #fff;
+border-radius: 20px;
+}
 a {
   text-decoration: none;
 }
@@ -1126,7 +1212,7 @@ nav > ul li:hover {
 }
 .events {
   width: 100%;
-  height: 50vh;
+  height: 70vh;
   margin-top: 50px;
   padding-top: 70px;
   position: relative;
@@ -1590,6 +1676,8 @@ footer .social span div svg {
   .partnerSlideButtonBackground {
     background: #aaadb0 !important;
   }
+  .prompt-enter-active,
+  .prompt-leave-active,
   .row1-enter-active,
   .partner-Row1-leave-active,
   .row2-enter-active,
@@ -1618,6 +1706,16 @@ footer .social span div svg {
   .row2-enter-to,
   .row2-leave-from {
     transform: translateX(0%);
+    opacity: 1;
+  }
+  .prompt-enter-from,
+  .prompt-leave-to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  .prompt-enter-to,
+  .prompt-leave-from {
+    transform: translateY(0px);
     opacity: 1;
   }
   .about .about-content {
