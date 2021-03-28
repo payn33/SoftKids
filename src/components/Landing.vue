@@ -1,5 +1,5 @@
 <template>
-  <div class="body" :class="{ fixed: classes.burger }">
+  <div class="body">
     <transition name="overlay">
       <div class="overlay" v-if="classes.burger"></div>
     </transition>
