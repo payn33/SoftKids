@@ -1,8 +1,10 @@
 <template>
-  <div class="body">
+  <div class="body" :class="{fixed: !classes.toggle_view}">
+    <Register :class="{ view: classes.toggle_view }" />
+
     <div class="prompt" v-for="(msg, index) in classes.prompts" :key="index">
       <transition-group name="prompt">
-        <div v-if="classes.prompts">{{msg}}</div>
+        <div v-if="classes.prompts">{{ msg }}</div>
       </transition-group>
     </div>
     <transition name="overlay">
@@ -51,7 +53,14 @@
             <li>Contact</li>
           </a>
 
-          <li @click="classes.burger = !classes.burger">Register</li>
+          <li
+            @click="
+              (classes.burger = !classes.burger),
+                (classes.toggle_view = !classes.toggle_view)
+            "
+          >
+            Register
+          </li>
         </ul>
       </div>
     </transition>
@@ -79,7 +88,9 @@
           <a href="#contact">
             <li>Contact</li>
           </a>
-          <li>Register</li>
+          <!-- <router-link :to="{name: 'auth'}"> -->
+          <li @click="classes.toggle_view = !classes.toggle_view">Register</li>
+          <!-- </router-link> -->
         </ul>
       </nav>
       <div class="left">
@@ -113,8 +124,18 @@
       <div class="right">
         <div class="right-content">
           <div class="circles">
-            <div class="sm-yellow-circle"></div>
-            <div class="md-blue-circle"></div>
+            <transition name="circles">
+              <div
+                class="sm-yellow-circle"
+                v-if="classes.animations.smCircle"
+              ></div>
+            </transition>
+            <transition name="circles">
+              <div
+                class="md-blue-circle"
+                v-if="classes.animations.circle"
+              ></div>
+            </transition>
           </div>
           <img class="img" src="@/assets/child.png" alt="child" rel="preload" />
         </div>
@@ -146,7 +167,12 @@
             </q>
           </p>
         </div>
-        <div class="lg-yellow-circle"></div>
+        <transition name="circles">
+          <div
+            class="lg-yellow-circle"
+            v-if="classes.animations.bgCircle"
+          ></div>
+        </transition>
       </div>
     </div>
 
@@ -155,7 +181,7 @@
       <div class="partnerCarouselCon">
         <transition name="row1">
           <div class="logo-row1 logo-row" v-if="classes.toggle_partner_row1">
-            <span class="leftTop">
+            <span class="leftTop" >
               <svg
                 width="28"
                 height="28"
@@ -173,7 +199,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="leftBottom">
+            <span class="leftBottom" >
               <svg
                 width="20"
                 height="30"
@@ -191,7 +217,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="center">
+            <span class="center" >
               <svg
                 width="69"
                 height="21"
@@ -218,7 +244,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="rightTop">
+            <span class="rightTop" >
               <svg
                 width="28"
                 height="24"
@@ -237,7 +263,10 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="rightBottom">
+            <span
+              class="rightBottom"
+              
+            >
               <svg
                 width="30"
                 height="30"
@@ -262,7 +291,7 @@
       <div class="partnerCarouselCon">
         <transition name="row2">
           <div class="logo-row2 logo-row" v-if="classes.toggle_partner_row2">
-            <span class="center">
+            <span class="center" >
               <svg
                 width="69"
                 height="21"
@@ -289,7 +318,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="leftTop">
+            <span class="leftTop" >
               <svg
                 width="30"
                 height="30"
@@ -308,7 +337,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="leftBottom">
+            <span class="leftBottom" >
               <svg
                 width="20"
                 height="30"
@@ -326,7 +355,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="rightTop">
+            <span class="rightTop" >
               <svg
                 width="28"
                 height="28"
@@ -344,7 +373,10 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="rightBottom">
+            <span
+              class="rightBottom"
+              
+            >
               <svg
                 width="28"
                 height="24"
@@ -447,18 +479,30 @@
       <div class="eventCarouselCon">
         <transition name="row1">
           <div class="events-row1" v-if="classes.toggle_event_row1">
-            <span><img src="@/assets/event1.png" alt="" /></span>
-            <span><img src="@/assets/event2.png" alt="" /></span>
-            <span><img src="@/assets/event3.png" alt="" /></span>
+            <span 
+              ><img src="@/assets/event1.png" alt=""
+            /></span>
+            <span 
+              ><img src="@/assets/event2.png" alt=""
+            /></span>
+            <span 
+              ><img src="@/assets/event3.png" alt=""
+            /></span>
           </div>
         </transition>
       </div>
       <div class="eventCarouselCon">
         <transition name="row2">
           <div class="events-row2" v-if="classes.toggle_event_row2">
-            <span><img src="@/assets/event4.png" alt="" /></span>
-            <span><img src="@/assets/event5.png" alt="" /></span>
-            <span><img src="@/assets/event6.png" alt="" /></span>
+            <span 
+              ><img src="@/assets/event4.png" alt=""
+            /></span>
+            <span 
+              ><img src="@/assets/event5.png" alt=""
+            /></span>
+            <span 
+              ><img src="@/assets/event6.png" alt=""
+            /></span>
           </div>
         </transition>
       </div>
@@ -491,17 +535,17 @@
       <div class="courseCarouselCon">
         <transition name="row1">
           <div class="courses-row1" v-if="classes.toggle_course_row1">
-            <span
+            <span 
               ><img src="@/assets/courses1.png" alt="" />
               <p>Website Design and Development</p>
               <small>Starting from N30,000</small>
             </span>
-            <span
+            <span 
               ><img src="@/assets/courses2.png" alt="" />
               <p>Design Bootcamp</p>
               <small>Starting from N45,000</small>
             </span>
-            <span
+            <span 
               ><img src="@/assets/courses3.png" alt="" />
               <p>3d Design Illustration</p>
               <small>12th Feb - 08th Mar 2020</small>
@@ -513,17 +557,17 @@
       <div class="courseCarouselCon">
         <transition name="row2">
           <div class="courses-row2" v-if="classes.toggle_course_row2">
-            <span
+            <span 
               ><img src="@/assets/courses4.png" alt="" />
               <p>Design Bootcamp</p>
               <small>12th Feb - 08th Mar 2020</small>
             </span>
-            <span
+            <span 
               ><img src="@/assets/courses5.png" alt="" />
               <p>Design Bootcamp</p>
               <small>12th Feb - 08th Mar 2020</small>
             </span>
-            <span
+            <span 
               ><img src="@/assets/courses6.png" alt="" />
               <p>Design Bootcamp</p>
               <small>12th Feb - 08th Mar 2020</small>
@@ -671,6 +715,7 @@
       <div id="end"></div>
     </div>
   </div>
+
   <div id="svg">
     <svg width="0" height="0">
       <defs>
@@ -761,10 +806,13 @@
 </template>
 
 <script>
-// import { ref } from "vue";
+import Register from "./Register.vue";
 import emailjs from "emailjs-com";
 import { ref, onMounted } from "vue";
 export default {
+  components: {
+    Register,
+  },
   setup() {
     const classes = ref({
       toggle_course_row1: true,
@@ -773,36 +821,59 @@ export default {
       toggle_event_row2: true,
       toggle_partner_row1: true,
       toggle_partner_row2: true,
+      toggle_view: true,
       burger: false,
       validEmail: (email) => {
         var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
       },
-      emailId: "jondough@gmail.com",
+      emailId: "soft-kode@gmail.com",
       email: {
         mail: "",
         name: "",
         content: "",
       },
-      prompts: [
-      ],
+      prompts: [],
+      animations: {
+        circle: false,
+        smCircle: false,
+        bgCircle: false,
+        txt1: false,
+        txt2: false,
+        txt3: false,
+      },
     });
 
+    const interval = () => {
+      setInterval(() => {
+        classes.value.animations.circle = !classes.value.animations.circle;
+      }, 1000);
+      setInterval(() => {
+        classes.value.animations.bgCircle = !classes.value.animations.bgCircle;
+      }, 1500);
+      setInterval(() => {
+        classes.value.animations.smCircle = !classes.value.animations.smCircle;
+      }, 1900);
+
+      setInterval(() => {
+        classes.value.animations.txt = !classes.value.animations.txt;
+      }, 5000);
+    };
     const send = () => {
       if (
         !classes.value.validEmail(classes.value.email.mail) ||
         classes.value.mail == ""
       ) {
         // alert("invalid email address");
-        classes.value.prompts.push("invalid email address")
-         setTimeout(() => {
-                classes.value.prompts.pop()
-              }, 3000);
+        classes.value.prompts.push("invalid email address");
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 3000);
       } else if (!classes.value.email.name) {
         classes.value.prompts.push("name cannot be empty");
-         setTimeout(() => {
-                classes.value.prompts.pop()
-              }, 3000);
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 3000);
       } else {
         sending();
       }
@@ -826,22 +897,22 @@ export default {
             if (response.status === 200) {
               classes.value.prompts.push("Sent successfully");
               setTimeout(() => {
-                classes.value.prompts.pop()
+                classes.value.prompts.pop();
               }, 3000);
             }
           })
           .catch((err) => {
             console.log(err);
             classes.value.prompts.push("an error occured, please try again");
-             setTimeout(() => {
-                classes.value.prompts.pop()
-              }, 3000);
+            setTimeout(() => {
+              classes.value.prompts.pop();
+            }, 3000);
           });
       } catch (error) {
         classes.value.prompts.push("an error occured, please try again");
-         setTimeout(() => {
-                classes.value.prompts.pop()
-              }, 3000);
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 3000);
       }
       classes.value.email.mail = "";
       classes.value.email.name = "";
@@ -871,6 +942,8 @@ export default {
     onMounted(() => {
       windowSize();
       toggleCarousel(togCarousel);
+      classes.value.animations.circle = true;
+      interval();
     });
     setInterval(() => {
       windowSize();
@@ -878,6 +951,7 @@ export default {
     }, 10000);
     return {
       classes,
+      interval,
       send,
       sending,
       windowSize,
@@ -888,6 +962,17 @@ export default {
 </script>
 
 <style scoped>
+.fixed {
+  position: fixed;
+}
+.view {
+  display: none;
+}
+#key {
+  width: 10px;
+  height: 10px;
+  animation: new 1s ease infinite;
+}
 .prompt {
   width: 100%;
   height: 30%;
@@ -901,12 +986,13 @@ export default {
   width: 55%;
   text-align: center;
   margin: auto;
-    padding: 20px;
-background: #fff;
-border-radius: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
 }
 a {
   text-decoration: none;
+  /* animation: myscale 1s infinite; */
 }
 .body {
   width: 100%;
@@ -927,7 +1013,7 @@ a {
   width: 85%;
   margin: auto;
   padding: 20px 0 0 0;
-  z-index: 99;
+  z-index: 999;
 }
 nav .burger {
   display: none;
@@ -936,6 +1022,7 @@ nav span {
   display: flex;
   align-items: center;
   cursor: pointer;
+  /* animation: myscale 1s infinite; */
 }
 nav > span::after {
   content: "SoftKids";
@@ -1005,6 +1092,10 @@ nav > ul li:hover {
   font-size: 50px;
   color: #fff;
   text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 1s ease-in;
+}
+.scale {
+  transform: scale(1.1) !important;
 }
 .text h1:last-of-type {
   padding-bottom: 20px;
@@ -1052,19 +1143,59 @@ nav > ul li:hover {
   align-items: center;
   transform: rotate(-10deg);
 }
-.sm-yellow-circle {
+.circles .sm-yellow-circle {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background: #ffd334;
+  animation: new 1s ease;
+
+  /* transition: all 0.3s ease; */
+  /* animation: myscale 1s ease;
+  -webkit-animation: myscale 1s ease; */
 }
-.md-blue-circle {
+.circles .md-blue-circle {
   width: 70px;
   height: 70px;
   border-radius: 50%;
   background: linear-gradient(90deg, #1cd8d2 0%, #93edc7 100%);
+  /* animation: myscale 1s ease;
+  -webkit-animation: myscale 1s ease; */
 }
-
+.circles-enter-active,
+.circles-leave-active {
+  transition: all 0.5s ease-in-out;
+}
+.circles-enter-from,
+.circles-leave-to {
+  opacity: 0;
+  transform: scale(1.4);
+}
+.circles-enter-to,
+.circles-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+/* @keyframes myscale {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 200px;
+  }
+} */
+/* @keyframes myscale {
+   0% {
+     width: 0px;
+     opacity: 0;
+     transform: scale(1)
+   }
+   100% {
+     width: 100px;
+     opacity: 1;
+     transform: scale(1.3)
+   }
+  } */
 .head .right {
   position: absolute;
   width: 60%;
@@ -1119,6 +1250,7 @@ nav > ul li:hover {
   /* height: 100px; */
   padding: 10px;
   position: relative;
+  /* animation: myscale .5s infinite */
 }
 .lg-yellow-circle {
   width: 150px;
@@ -1126,6 +1258,8 @@ nav > ul li:hover {
   border-radius: 50%;
   background: #ffd334;
   margin-left: 10px;
+  /* animation: myscale 1s ease;
+  -webkit-animation: myscale 1s ease; */
 }
 .partners {
   width: 85%;
@@ -1144,7 +1278,7 @@ nav > ul li:hover {
 }
 .partners .logo-row > span {
   display: flex;
-  /* justify-content: space-between; */
+  transition: all 0.4s ease-in;
   align-items: center;
 }
 .partners div:first-of-type {
@@ -1212,7 +1346,7 @@ nav > ul li:hover {
 }
 .events {
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   margin-top: 50px;
   padding-top: 70px;
   position: relative;
@@ -1246,6 +1380,7 @@ nav > ul li:hover {
   top: -130px;
   right: 0;
 }
+
 .events-row1 {
   padding-bottom: 10px;
 }
@@ -1256,12 +1391,19 @@ nav > ul li:hover {
   border-radius: 20px;
 }
 .events div span {
+  cursor: pointer;
   border-radius: 20px;
+}
+.eventCarouselCon div span {
+  transition: all 0.4s ease;
+}
+.eventCarouselCon div span:hover {
+  transform: scale(1.1) !important;
 }
 .events div span:nth-child(2) {
   padding: 0 20px;
 }
-.events-row2 span:nth-child(2).cour {
+.events-row2 span:nth-child(2) {
   transform: translateY(30px);
 }
 .events-row2 span:nth-child(1) {
@@ -1273,7 +1415,7 @@ nav > ul li:hover {
 .courses {
   width: 100%;
   /* height: 100vh; */
-  margin: 90px auto auto auto;
+  margin: auto;
   padding-bottom: 20%;
   background: linear-gradient(115.59deg, #fc9f31 4.05%, #ee4e4e 107.24%);
   clip-path: url(#courseTopCurve);
@@ -1297,7 +1439,8 @@ nav > ul li:hover {
   padding-bottom: 50px;
 }
 .courses div span {
-  width: 32%;
+  width: 30%;
+  transition: all 0.4s ease-in;
 }
 .courses div span p,
 .courses div span small {
@@ -1489,8 +1632,8 @@ footer .social span div svg {
     bottom: 0%;
     transform: translateX(-50%); */
   }
-  .right-content img {
-  }
+  /* .right-content img {
+  } */
   nav ul {
     display: none;
   }
@@ -1503,7 +1646,7 @@ footer .social span div svg {
   .circles .md-blue-circle {
     display: none;
   }
-  .sm-yellow-circle {
+  .circles .sm-yellow-circle {
     position: absolute;
     top: 10%;
     right: 0px;
@@ -1624,8 +1767,6 @@ footer .social span div svg {
     position: absolute;
     bottom: 0px;
   }
-  #courseButton {
-  }
 
   .partners {
     padding-top: 100px;
@@ -1676,6 +1817,7 @@ footer .social span div svg {
   .partnerSlideButtonBackground {
     background: #aaadb0 !important;
   }
+
   .prompt-enter-active,
   .prompt-leave-active,
   .row1-enter-active,
@@ -1763,9 +1905,9 @@ footer .social span div svg {
     margin: 30px 0px;
     padding: 0px;
   }
-  .events div span:nth-child(3) {
-    /* transform: translateY(0px) */
-  }
+  /* .events div span:nth-child(3) {
+    transform: translateY(0px)
+  } */
 
   .events div span img {
     width: 100%;

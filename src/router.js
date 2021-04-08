@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { Landing, Test } from "./components/index";
+import { Landing,   } from "./components/index";
 
 const routes = [
   {
@@ -7,11 +7,12 @@ const routes = [
     component: Landing,
     name: "home",
   },
-  {
-      path: '/test',
-      component: Test,
-      name: 'test'
-  }
+  // {
+  //   path: "/login",
+  //   component: Register,
+  //   name: "auth"
+  // }
+
 ];
 
 const router = createRouter({

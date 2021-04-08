@@ -1,6 +1,6 @@
 import Landing from './Landing.vue'
-import Test from './Test.vue'
+import Register from './Register.vue'
 
 export {
-    Landing, Test
+    Landing, Register,
 }
