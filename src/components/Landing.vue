@@ -89,7 +89,7 @@
             <li>Contact</li>
           </a>
           <!-- <router-link :to="{name: 'auth'}"> -->
-          <li @click="classes.toggle_view = !classes.toggle_view">Register</li>
+          <li :class="{register: !classes.toggle_view}" @click="classes.toggle_view = !classes.toggle_view">Register</li>
           <!-- </router-link> -->
         </ul>
       </nav>
@@ -1047,6 +1047,12 @@ nav ul li {
 }
 nav > ul li:hover {
   background: #fff;
+  border-radius: 30px;
+  padding: 15px;
+  color: #f67c3e;
+}
+.register {
+   background: #fff;
   border-radius: 30px;
   padding: 15px;
   color: #f67c3e;
