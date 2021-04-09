@@ -1,28 +1,56 @@
 <template>
-  <div class="bod">
-    <form novalidate @submit.prevent v-if="classes.register">
-      <header>
-        <h1>Login</h1>
-        <h1>Sign-up</h1>
-      </header>
-
-      <div class="input">
-        <input type="text" required placeholder="Name" />
-        <input type="text" required placeholder="Guardian's name" />
-        <input type="text" required placeholder="Phone number" />
-        <input type="text" required placeholder="Password" />
+  <transition name="fade">
+    <div class="bod" v-if="classes.view">
+      <div class="prompt" v-for="(msg, index) in classes.prompts" :key="index">
+        <transition-group name="prompt">
+          <div v-if="classes.prompts">{{ msg }}</div>
+        </transition-group>
       </div>
+      <form novalidate @submit.prevent="send()">
+        <header>
+          <h1>Register</h1>
+          <!-- <h1>Sign-up</h1> -->
+        </header>
 
-      <span> <p @click="classes.register = false, classes.forgot_password = true">Forgot password?</p> </span>
+        <div class="input">
+          <input
+            type="text"
+            required
+            placeholder="Name"
+            v-model="classes.reg.name"
+          />
+          <input
+            type="text"
+            required
+            placeholder="Guardian's name"
+            v-model="classes.reg.gName"
+          />
+          <input
+            type="text"
+            required
+            placeholder="Phone number"
+            v-model="classes.reg.number"
+          />
+          <input
+            type="text"
+            required
+            placeholder="Email address"
+            v-model="classes.reg.email"
+          />
+        </div>
 
-      <button>
-        <p>Login to account</p>
-        <span><i class="fas fa-angle-right"></i></span>
-      </button>
-    </form>
+        <!-- <span> <p @click="classes.register = false, classes.forgot_password = true">Forgot password?</p> </span> -->
 
+        <span>
+          <p @click="classes.close_view()">Cancel</p>
+          <button @click="$emit">
+            <p>Enter</p>
+            <span><i class="fas fa-angle-right"></i></span>
+          </button>
+        </span>
+      </form>
 
-    <form novalidate @submit.prevent v-if="classes.forgot_password">
+      <!-- <form novalidate @submit.prevent v-if="classes.forgot_password">
         <header>Forgot Password</header>
 
         <div class="input">
@@ -34,19 +62,96 @@
         <p>Continue</p>
         <span><i class="fas fa-angle-right"></i></span>
       </button>
-    </form>
-  </div>
+    </form> -->
+    </div>
+  </transition>
 </template>
 
 <script>
-import {ref} from 'vue'
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 export default {
   setup() {
-      const classes = ref({
-          register: true,
-          forgot_password: false,
-      })
-    return {classes};
+    const store = useStore();
+    const classes = ref({
+      view: computed(() => store.state.toggle_reg),
+      forgot_password: false,
+      validEmail: (email) => {
+        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      },
+      close_view: () => store.dispatch("toggle_false"),
+      reg: {
+        name: "",
+        gName: "",
+        number: "",
+        email: "",
+      },
+      prompts: [],
+    });
+
+    const send = () => {
+      if (
+        classes.value.reg.name == "" &&
+        classes.value.reg.gName == "" &&
+        classes.value.reg.number == "" &&
+        classes.value.reg.email == ""
+      ) {
+        classes.value.prompts.push("Enter details to continue");
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 2500);
+      } else if (!classes.value.reg.name || classes.value.reg.name == "") {
+        classes.value.prompts.push("Name cannot be blank");
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 2500);
+      } else if (!classes.value.reg.gName || classes.value.reg.gName == "") {
+        classes.value.prompts.push("Guardian's name cannot be blank");
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 2500);
+      } else if (!classes.value.reg.number || classes.value.reg.number == "") {
+        classes.value.prompts.push("Phone number cannot be blank");
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 2500);
+      } else if (
+        !classes.value.validEmail(classes.value.reg.email) ||
+        classes.value.reg.gmail == ""
+      ) {
+        classes.value.prompts.push("Invalid email address");
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 2500);
+      } else {
+        classes.value.prompts.push("Sent successfully");
+        setTimeout(() => {
+          classes.value.prompts.pop();
+          classes.value.close_view();
+        }, 500);
+      }
+      classes.value.reg.name = ""
+      classes.value.reg.gName = ""
+      classes.value.reg.number = ""
+      classes.value.reg.email = ""
+    };
+
+    // const sendMail = () => {
+    //   try {
+    //     emailjs.send().then((response) => {
+    //   console.log(response.status);
+    //   if(response.status === 200) {
+    //     classes.value.prompts.push("Registered successfully")
+    //     setTimeout(() => {
+    //       classes.value.prompts.pop()
+    //     }, 3000);
+
+    //   }
+    // })
+    //   }
+    // }
+    return { classes, send };
   },
 };
 </script>
@@ -58,6 +163,49 @@ export default {
   position: fixed;
   background: linear-gradient(115.59deg, #1ee4f0 4.05%, #12b6da 107.24%);
   z-index: 998;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.4s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+.prompt {
+  width: 100%;
+  height: 30%;
+  position: fixed;
+  top: 0px;
+  height: 100px;
+  padding-top: 20px;
+  z-index: 98;
+}
+.prompt div {
+  width: 55%;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+}
+.prompt-enter-active,
+.prompt-leave-active {
+  transition: all 0.4s ease-in-out;
+}
+.prompt-enter-from,
+.prompt-leave-to {
+  transform: translateY(-50px);
+  opacity: 0;
+}
+.prompt-enter-to,
+.prompt-leave-from {
+  transform: translateY(0px);
+  opacity: 1;
 }
 form {
   position: absolute;
@@ -80,13 +228,13 @@ form header h1 {
   font-weight: lighter;
   font-size: 26px;
 }
-form header h1:first-of-type {
+/* form header h1:first-of-type {
   padding-right: 20px;
 }
 form header h1:last-of-type {
     font-size: 18px;
-    opacity: .6;
-}
+    opacity: .6; 
+}*/
 form .input {
   display: grid;
   width: 85%;
@@ -95,7 +243,7 @@ form .input {
   justify-content: space-between;
   align-items: center;
   grid-row-gap: 20px;
-  padding: 35px 0px 25px 0px;
+  padding: 35px 0px 50px 0px;
 }
 form .input input {
   width: 100%;
@@ -106,31 +254,42 @@ form .input input {
   border: none;
 }
 form .input input::placeholder {
-padding-left: 20px;
+  padding-left: 20px;
 }
 form .input input:focus {
   outline: 0;
 }
-form span p {
+/* form span p {
   font-size: 12px;
   color: #3f9dd1;
   text-align: right;
   padding-right: 100px;
   padding-bottom: 35px;
   cursor: pointer;
-}
+} */
 form .small {
-    width: 84%;
-    margin: auto;
-    font-size: 10px;
-    padding-bottom: 50px;
+  width: 84%;
+  margin: auto;
+  font-size: 10px;
+  padding-bottom: 50px;
 }
-form button {
+form > span {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 85%;
   margin: auto;
-  width: 170px;
+}
+form > span > p {
+  font-size: 14px;
+  cursor: pointer;
+}
+form span button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin: auto; */
+  width: 110px;
   border-radius: 20px;
   padding: 8px 15px;
   outline: 0;
@@ -139,7 +298,7 @@ form button {
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.02);
   border-radius: 30px;
 }
-form button p {
+form button > p {
   font-weight: 700;
   color: #fff;
 }
@@ -153,13 +312,13 @@ form button span i {
   color: #fc9f31;
 }
 @media only screen and (max-width: 700px) {
-    .input {
-        display: flex !important;
-        flex-direction: column;
-    }
-    form span p {
-        text-align: center;
-        padding-right: 0px;
-    }
+  .input {
+    display: flex !important;
+    flex-direction: column;
+  }
+  form span p {
+    text-align: center;
+    padding-right: 0px;
+  }
 }
 </style>

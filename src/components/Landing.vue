@@ -1,6 +1,9 @@
 <template>
-  <div class="body" :class="{fixed: !classes.toggle_view}">
-    <Register :class="{ view: classes.toggle_view }" />
+  <div class="body" :class="{fixed: classes.toggle_view}">
+    
+    <!-- <transition name="reg"> -->
+      <Register />
+      <!-- </transition> -->
 
     <div class="prompt" v-for="(msg, index) in classes.prompts" :key="index">
       <transition-group name="prompt">
@@ -13,7 +16,7 @@
     <transition name="mobnav">
       <div class="mobile-nav" v-if="classes.burger">
         <svg
-          @click="classes.burger = !classes.burger"
+          @click="(classes.burger = !classes.burger)"
           class="pointer"
           width="16"
           height="16"
@@ -40,24 +43,22 @@
         </svg>
 
         <ul>
-          <a href="#partners" @click="classes.burger = !classes.burger">
+          <a href="#partners" @click="(classes.burger = !classes.burger), (classes.toggle_view = false)">
             <li>Partners</li>
           </a>
-          <a href="#about" @click="classes.burger = !classes.burger">
+          <a href="#about" @click="(classes.burger = !classes.burger), (classes.toggle_view = false)">
             <li>About</li>
           </a>
-          <a href="#courses" @click="classes.burger = !classes.burger">
+          <a href="#courses" @click="(classes.burger = !classes.burger), (classes.toggle_view = false)">
             <li>Courses</li>
           </a>
-          <a href="#contact" @click="classes.burger = !classes.burger">
+          <a href="#contact" @click="(classes.burger = !classes.burger), (classes.toggle_view = false)">
             <li>Contact</li>
           </a>
 
           <li
             @click="
-              (classes.burger = !classes.burger),
-                (classes.toggle_view = !classes.toggle_view)
-            "
+              (classes.burger = !classes.burger), (classes.open_view())"
           >
             Register
           </li>
@@ -70,7 +71,7 @@
           <img src="@/assets/logo.svg" alt="" />
         </span>
 
-        <div class="burger" @click="classes.burger = !classes.burger">
+        <div class="burger" @click="(classes.burger = !classes.burger)">
           <span></span>
         </div>
 
@@ -89,7 +90,7 @@
             <li>Contact</li>
           </a>
           <!-- <router-link :to="{name: 'auth'}"> -->
-          <li :class="{register: !classes.toggle_view}" @click="classes.toggle_view = !classes.toggle_view">Register</li>
+          <li :class="{register: classes.toggle_view}" @click="classes.open_view()">Register</li>
           <!-- </router-link> -->
         </ul>
       </nav>
@@ -808,12 +809,16 @@
 <script>
 import Register from "./Register.vue";
 import emailjs from "emailjs-com";
-import { ref, onMounted } from "vue";
+import { useStore } from "vuex"
+
+import { ref, onMounted, computed } from "vue";
 export default {
   components: {
     Register,
   },
   setup() {
+        const store = useStore()
+
     const classes = ref({
       toggle_course_row1: true,
       toggle_course_row2: true,
@@ -821,7 +826,8 @@ export default {
       toggle_event_row2: true,
       toggle_partner_row1: true,
       toggle_partner_row2: true,
-      toggle_view: true,
+      toggle_view: computed(() => store.state.toggle_reg),
+      open_view: () => store.dispatch("toggle_true"),
       burger: false,
       validEmail: (email) => {
         var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -860,26 +866,34 @@ export default {
       }, 5000);
     };
     const send = () => {
-      if (
+      if (classes.value.email.mail == "" && classes.value.email.name == "" && classes.value.email.content == "") {
+        classes.value.prompts.push("Enter details to continue")
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 2500);
+      }
+       else if (
         !classes.value.validEmail(classes.value.email.mail) ||
         classes.value.mail == ""
       ) {
         // alert("invalid email address");
-        classes.value.prompts.push("invalid email address");
+        classes.value.prompts.push("Invalid email address");
         setTimeout(() => {
           classes.value.prompts.pop();
-        }, 3000);
+        }, 2500);
       } else if (!classes.value.email.name) {
-        classes.value.prompts.push("name cannot be empty");
+        classes.value.prompts.push("name cannot be blank");
         setTimeout(() => {
           classes.value.prompts.pop();
-        }, 3000);
+        }, 2500);
+      } else if (!classes.value.email.content) {
+        classes.value.prompts.push("Enter message")
       } else {
-        sending();
+        sendMail();
       }
     };
 
-    const sending = () => {
+    const sendMail = () => {
       try {
         emailjs
           .send(
@@ -899,6 +913,7 @@ export default {
               setTimeout(() => {
                 classes.value.prompts.pop();
               }, 3000);
+              location.reload()
             }
           })
           .catch((err) => {
@@ -953,7 +968,7 @@ export default {
       classes,
       interval,
       send,
-      sending,
+      sendMail,
       windowSize,
       toggleCarousel,
     };
@@ -1013,7 +1028,7 @@ a {
   width: 85%;
   margin: auto;
   padding: 20px 0 0 0;
-  z-index: 999;
+  z-index: 998;
 }
 nav .burger {
   display: none;
@@ -1712,7 +1727,7 @@ footer .social span div svg {
     border-radius: 50px 0 0 50px;
     top: 0;
     right: 0;
-    z-index: 101;
+    z-index: 999;
   }
   .mobnav-enter-from,
   .mobnav-leave-to {
@@ -1833,7 +1848,9 @@ footer .social span div svg {
   .mobnav-enter-active,
   .mobnav-leave-active,
   .overlay-enter-active,
-  .overlay-leave-active {
+  .overlay-leave-active,
+  .reg-enter-active,
+  .reg-leave-active {
     transition: all 0.4s ease-in-out;
   }
   .row1-enter-from,
@@ -1864,6 +1881,12 @@ footer .social span div svg {
   .prompt-enter-to,
   .prompt-leave-from {
     transform: translateY(0px);
+    opacity: 1;
+  }
+  .reg-enter-from, .reg-leave-to {
+    opacity: 0;
+  }
+  .reg-enter-to, .reg-leave-from {
     opacity: 1;
   }
   .about .about-content {
