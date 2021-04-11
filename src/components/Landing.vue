@@ -1109,7 +1109,7 @@ a {
   transition: all 0.3s ease-out;
 }
 .fade-in-enter-active, .fade-in-leave-active {
-  transition: all 1.2s ease-out;
+  transition: all 2.2s ease-out;
 }
 .fade-in-enter-from, .fade-in-leave-to {
   opacity: 0;
