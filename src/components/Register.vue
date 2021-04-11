@@ -238,6 +238,7 @@ form header h1:last-of-type {
 form .input {
   display: grid;
   width: 85%;
+  height: 200px;
   margin: auto;
   grid-template-columns: 40% 40%;
   justify-content: space-between;
