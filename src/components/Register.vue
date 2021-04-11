@@ -313,7 +313,7 @@ form button span i {
   color: #fc9f31;
 }
 @media only screen and (max-width: 700px) {
-  .input {
+  form .input {
     display: flex !important;
     flex-direction: column;
     height: 310px;
