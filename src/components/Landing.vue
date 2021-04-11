@@ -1,9 +1,8 @@
 <template>
-  <div class="body" :class="{fixed: classes.toggle_view}">
-    
+  <div class="body" :class="{ fixed: classes.toggle_view }">
     <!-- <transition name="reg"> -->
-      <Register />
-      <!-- </transition> -->
+    <Register />
+    <!-- </transition> -->
 
     <div class="prompt" v-for="(msg, index) in classes.prompts" :key="index">
       <transition-group name="prompt">
@@ -16,7 +15,7 @@
     <transition name="mobnav">
       <div class="mobile-nav" v-if="classes.burger">
         <svg
-          @click="(classes.burger = !classes.burger)"
+          @click="classes.burger = !classes.burger"
           class="pointer"
           width="16"
           height="16"
@@ -43,23 +42,40 @@
         </svg>
 
         <ul>
-          <a href="#partners" @click="(classes.burger = !classes.burger), (classes.toggle_view = false)">
+          <a
+            href="#partners"
+            @click="
+              (classes.burger = !classes.burger), (classes.toggle_view = false)
+            "
+          >
             <li>Partners</li>
           </a>
-          <a href="#about" @click="(classes.burger = !classes.burger), (classes.toggle_view = false)">
+          <a
+            href="#about"
+            @click="
+              (classes.burger = !classes.burger), (classes.toggle_view = false)
+            "
+          >
             <li>About</li>
           </a>
-          <a href="#courses" @click="(classes.burger = !classes.burger), (classes.toggle_view = false)">
+          <a
+            href="#courses"
+            @click="
+              (classes.burger = !classes.burger), (classes.toggle_view = false)
+            "
+          >
             <li>Courses</li>
           </a>
-          <a href="#contact" @click="(classes.burger = !classes.burger), (classes.toggle_view = false)">
+          <a
+            href="#contact"
+            @click="
+              (classes.burger = !classes.burger), (classes.toggle_view = false)
+            "
+          >
             <li>Contact</li>
           </a>
 
-          <li
-            @click="
-              (classes.burger = !classes.burger), (classes.open_view())"
-          >
+          <li @click="(classes.burger = !classes.burger), classes.open_view()">
             Register
           </li>
         </ul>
@@ -71,7 +87,7 @@
           <img src="@/assets/logo.svg" alt="" />
         </span>
 
-        <div class="burger" @click="(classes.burger = !classes.burger)">
+        <div class="burger" @click="classes.burger = !classes.burger">
           <span></span>
         </div>
 
@@ -90,7 +106,12 @@
             <li>Contact</li>
           </a>
           <!-- <router-link :to="{name: 'auth'}"> -->
-          <li :class="{register: classes.toggle_view}" @click="classes.open_view()">Register</li>
+          <li
+            :class="{ register: classes.toggle_view }"
+            @click="classes.open_view()"
+          >
+            Register
+          </li>
           <!-- </router-link> -->
         </ul>
       </nav>
@@ -164,7 +185,7 @@
           <p>
             <q>
               I want to build a world where children are encouraged to learn
-              about tech and more studies ae chosen to be more specific
+              about tech and more studies are chosen to be more specific
             </q>
           </p>
         </div>
@@ -177,12 +198,12 @@
       </div>
     </div>
 
-    <div class="partners" id="partners">
+    <div class="partners fade" id="partners">
       <h1>Our Partners</h1>
       <div class="partnerCarouselCon">
         <transition name="row1">
           <div class="logo-row1 logo-row" v-if="classes.toggle_partner_row1">
-            <span class="leftTop" >
+            <span class="leftTop">
               <svg
                 width="28"
                 height="28"
@@ -200,7 +221,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="leftBottom" >
+            <span class="leftBottom">
               <svg
                 width="20"
                 height="30"
@@ -218,7 +239,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="center" >
+            <span class="center">
               <svg
                 width="69"
                 height="21"
@@ -245,7 +266,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="rightTop" >
+            <span class="rightTop">
               <svg
                 width="28"
                 height="24"
@@ -264,10 +285,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span
-              class="rightBottom"
-              
-            >
+            <span class="rightBottom">
               <svg
                 width="30"
                 height="30"
@@ -292,7 +310,7 @@
       <div class="partnerCarouselCon">
         <transition name="row2">
           <div class="logo-row2 logo-row" v-if="classes.toggle_partner_row2">
-            <span class="center" >
+            <span class="center">
               <svg
                 width="69"
                 height="21"
@@ -319,7 +337,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="leftTop" >
+            <span class="leftTop">
               <svg
                 width="30"
                 height="30"
@@ -338,7 +356,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="leftBottom" >
+            <span class="leftBottom">
               <svg
                 width="20"
                 height="30"
@@ -356,7 +374,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span class="rightTop" >
+            <span class="rightTop">
               <svg
                 width="28"
                 height="28"
@@ -374,10 +392,7 @@
               <p>Logoipsum</p>
             </span>
 
-            <span
-              class="rightBottom"
-              
-            >
+            <span class="rightBottom">
               <svg
                 width="28"
                 height="24"
@@ -421,14 +436,14 @@
       ></span>
     </section>
 
-    <div class="about" id="about">
+    <div class="about fade" id="about">
       <h1>About Softkids</h1>
       <div class="about-content">
-        <div class="img">
+        <div class="img fade">
           <img src="@/assets/about.png" alt="" />
         </div>
 
-        <div class="about-text">
+        <div class="about-text fade">
           <h2>We create the future leaders in Effurun</h2>
           <p>
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
@@ -451,6 +466,7 @@
 
     <div class="events">
       <svg
+        class="fade"
         id="events-half-circle"
         width="200"
         height="320"
@@ -480,13 +496,13 @@
       <div class="eventCarouselCon">
         <transition name="row1">
           <div class="events-row1" v-if="classes.toggle_event_row1">
-            <span 
+            <span class="fade"
               ><img src="@/assets/event1.png" alt=""
             /></span>
-            <span 
+            <span class="fade"
               ><img src="@/assets/event2.png" alt=""
             /></span>
-            <span 
+            <span class="fade"
               ><img src="@/assets/event3.png" alt=""
             /></span>
           </div>
@@ -495,13 +511,13 @@
       <div class="eventCarouselCon">
         <transition name="row2">
           <div class="events-row2" v-if="classes.toggle_event_row2">
-            <span 
+            <span class="fade"
               ><img src="@/assets/event4.png" alt=""
             /></span>
-            <span 
+            <span class="fade"
               ><img src="@/assets/event5.png" alt=""
             /></span>
-            <span 
+            <span class="fade"
               ><img src="@/assets/event6.png" alt=""
             /></span>
           </div>
@@ -536,17 +552,17 @@
       <div class="courseCarouselCon">
         <transition name="row1">
           <div class="courses-row1" v-if="classes.toggle_course_row1">
-            <span 
+            <span class="fade"
               ><img src="@/assets/courses1.png" alt="" />
               <p>Website Design and Development</p>
               <small>Starting from N30,000</small>
             </span>
-            <span 
+            <span class="fade"
               ><img src="@/assets/courses2.png" alt="" />
               <p>Design Bootcamp</p>
               <small>Starting from N45,000</small>
             </span>
-            <span 
+            <span class="fade"
               ><img src="@/assets/courses3.png" alt="" />
               <p>3d Design Illustration</p>
               <small>12th Feb - 08th Mar 2020</small>
@@ -558,17 +574,17 @@
       <div class="courseCarouselCon">
         <transition name="row2">
           <div class="courses-row2" v-if="classes.toggle_course_row2">
-            <span 
+            <span class="fade"
               ><img src="@/assets/courses4.png" alt="" />
               <p>Design Bootcamp</p>
               <small>12th Feb - 08th Mar 2020</small>
             </span>
-            <span 
+            <span class="fade"
               ><img src="@/assets/courses5.png" alt="" />
               <p>Design Bootcamp</p>
               <small>12th Feb - 08th Mar 2020</small>
             </span>
-            <span 
+            <span class="fade"
               ><img src="@/assets/courses6.png" alt="" />
               <p>Design Bootcamp</p>
               <small>12th Feb - 08th Mar 2020</small>
@@ -600,7 +616,7 @@
     </section>
 
     <div class="contact-body" id="contact">
-      <div class="contact">
+      <div class="contact fade">
         <div class="left">
           <h2>Contact Us</h2>
           <p>+234 8131147401</p>
@@ -809,15 +825,14 @@
 <script>
 import Register from "./Register.vue";
 import emailjs from "emailjs-com";
-import { useStore } from "vuex"
-
-import { ref, onMounted, computed } from "vue";
+import { useStore } from "vuex";
+import { ref, onMounted, computed, onUnmounted } from "vue";
 export default {
   components: {
     Register,
   },
   setup() {
-        const store = useStore()
+    const store = useStore();
 
     const classes = ref({
       toggle_course_row1: true,
@@ -844,11 +859,24 @@ export default {
         circle: false,
         smCircle: false,
         bgCircle: false,
-        txt1: false,
-        txt2: false,
-        txt3: false,
+      },
+      fade: false,
+      // fadeElements: [],
+      // swipe: {
+      //   touchstartX: null,
+      //   touchstartY: null,
+      //   touchendX: null,
+      //   touchendY: null,
+      // }
+      scroll: {
+        fadeElem: null,
+        rect: null,
+        elemTop: null,
+        elemBottom: null,
       },
     });
+
+    let fadeElements = []
 
     const interval = () => {
       setInterval(() => {
@@ -866,13 +894,16 @@ export default {
       }, 5000);
     };
     const send = () => {
-      if (classes.value.email.mail == "" && classes.value.email.name == "" && classes.value.email.content == "") {
-        classes.value.prompts.push("Enter details to continue")
+      if (
+        classes.value.email.mail == "" &&
+        classes.value.email.name == "" &&
+        classes.value.email.content == ""
+      ) {
+        classes.value.prompts.push("Enter details to continue");
         setTimeout(() => {
           classes.value.prompts.pop();
         }, 2500);
-      }
-       else if (
+      } else if (
         !classes.value.validEmail(classes.value.email.mail) ||
         classes.value.mail == ""
       ) {
@@ -887,7 +918,7 @@ export default {
           classes.value.prompts.pop();
         }, 2500);
       } else if (!classes.value.email.content) {
-        classes.value.prompts.push("Enter message")
+        classes.value.prompts.push("Enter message");
       } else {
         sendMail();
       }
@@ -913,7 +944,7 @@ export default {
               setTimeout(() => {
                 classes.value.prompts.pop();
               }, 3000);
-              location.reload()
+              location.reload();
             }
           })
           .catch((err) => {
@@ -941,6 +972,7 @@ export default {
         window.innerWidth ||
         document.documentElement.clientWidth ||
         document.body.clientWidth;
+      // console.log(togCarousel);
     };
 
     const toggleCarousel = (size) => {
@@ -951,7 +983,10 @@ export default {
           (classes.value.toggle_course_row2 = false),
           (classes.value.toggle_event_row2 = false),
           (classes.value.toggle_partner_row2 = false);
+        classes.value.fade = true;
+        console.log(classes.value.fade);
       }
+
     };
 
     onMounted(() => {
@@ -959,7 +994,65 @@ export default {
       toggleCarousel(togCarousel);
       classes.value.animations.circle = true;
       interval();
+
+      fadeElements = Array.from(
+        document.getElementsByClassName("fade")
+      );
+      // console.log(fadeElements);
+
+      document.addEventListener("scroll", handleScroll);
+      handleScroll();
+      // document.querySelector(".partnerCarouselCon").addEventListener("touchstart", (event) => {
+      //   console.log('start');
+      //   classes.value.swipe.touchstartX = event.changedTouches[0].screenX
+      //   // classes.value.swipe.touchstartY = event.changedTouches[0].screenY
+      // }, false)
+
+      //  document.querySelector(".partnerCarouselCon").addEventListener("touchend", (event) => {
+      //   console.log('end');
+      //   classes.value.swipe.touchendX = event.changedTouches[0].screenX
+      //   // classes.value.swipe.touchendY = event.changedTouches[0].screenY
+      //   handleGesture()
+      // }, false)
     });
+    onUnmounted(() => {
+      document.removeEventListener("scroll", handleScroll);
+    });
+    const handleScroll = () => {
+      for (let i = 0; i < fadeElements.length; i++) {
+        classes.value.scroll.fadeElem = fadeElements[i];
+        if (isVisible(classes.value.scroll.fadeElem)) {
+          classes.value.scroll.fadeElem.style.opacity = "1";
+          classes.value.scroll.fadeElem.style.transform = "scale(1)";
+          fadeElements.splice(i, 1);
+          // console.log("statement");
+        }
+        // console.log(fadeElements[0]);
+      }
+    };
+    const isVisible = (el) => {
+      classes.value.scroll.rect = el.getBoundingClientRect();
+      classes.value.scroll.elemTop = classes.value.scroll.rect.top +80;
+      classes.value.scroll.elemBottom = classes.value.scroll.rect.bottom;
+      // console.log("function", classes.value.scroll.elemTop, classes.value.scroll.elemBottom);
+      return (
+        classes.value.scroll.elemTop < window.innerHeight &&
+        classes.value.scroll.elemBottom >= 0
+      );
+    };
+    // const handleGesture = () => {
+    //   console.log("handle");
+    //   if (classes.value.swipe.touchendX < classes.value.swipe.touchstartX ) {
+    //     console.log("left");
+    //     classes.value.toggle_partner_row1 = !classes.value.toggle_partner_row1
+    //     classes.value.toggle_partner_row2 = !classes.value.toggle_partner_row2
+    //   }
+    //    else if (classes.value.swipe.touchendX > classes.value.swipe.touchstartX ) {
+    //     console.log("right");
+    //     classes.value.toggle_partner_row1 = true
+    //     classes.value.toggle_partner_row2 = false
+    //   }
+    // };
     setInterval(() => {
       windowSize();
       toggleCarousel(togCarousel);
@@ -971,6 +1064,10 @@ export default {
       sendMail,
       windowSize,
       toggleCarousel,
+      handleScroll,
+      fadeElements,
+      // handleGesture,
+      isVisible,
     };
   },
 };
@@ -1016,6 +1113,11 @@ a {
   position: relative;
   overflow-x: hidden;
   transition: all 0.4s ease;
+}
+.fade {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all .3s ease-out;
 }
 .fixed {
   position: fixed;
@@ -1067,7 +1169,7 @@ nav > ul li:hover {
   color: #f67c3e;
 }
 .register {
-   background: #fff;
+  background: #fff;
   border-radius: 30px;
   padding: 15px;
   color: #f67c3e;
@@ -1856,22 +1958,22 @@ footer .social span div svg {
   .row1-enter-from,
   .row1-leave-to {
     transform: translateX(-50%);
-    opacity: 0;
+    /* opacity: 0; */
   }
   .row1-enter-to,
   .row1-leave-from {
     transform: translateX(0%);
-    opacity: 1;
+    /* opacity: 1; */
   }
   .row2-enter-from,
   .row2-leave-to {
     transform: translateX(50%);
-    opacity: 0;
+    /* opacity: 0; */
   }
   .row2-enter-to,
   .row2-leave-from {
     transform: translateX(0%);
-    opacity: 1;
+    /* opacity: 1; */
   }
   .prompt-enter-from,
   .prompt-leave-to {
@@ -1883,10 +1985,12 @@ footer .social span div svg {
     transform: translateY(0px);
     opacity: 1;
   }
-  .reg-enter-from, .reg-leave-to {
+  .reg-enter-from,
+  .reg-leave-to {
     opacity: 0;
   }
-  .reg-enter-to, .reg-leave-from {
+  .reg-enter-to,
+  .reg-leave-from {
     opacity: 1;
   }
   .about .about-content {
