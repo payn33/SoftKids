@@ -81,7 +81,10 @@
         </ul>
       </div>
     </transition>
-    <div class="head">
+   
+
+   <transition name="fade-in">
+      <div class="head" v-if="classes.fade">
       <nav>
         <span>
           <img src="@/assets/logo.svg" alt="" />
@@ -197,6 +200,7 @@
         </transition>
       </div>
     </div>
+   </transition>
 
     <div class="partners fade" id="partners">
       <h1>Our Partners</h1>
@@ -496,30 +500,18 @@
       <div class="eventCarouselCon">
         <transition name="row1">
           <div class="events-row1" v-if="classes.toggle_event_row1">
-            <span class="fade"
-              ><img src="@/assets/event1.png" alt=""
-            /></span>
-            <span class="fade"
-              ><img src="@/assets/event2.png" alt=""
-            /></span>
-            <span class="fade"
-              ><img src="@/assets/event3.png" alt=""
-            /></span>
+            <span class="fade"><img src="@/assets/event1.png" alt="" /></span>
+            <span class="fade"><img src="@/assets/event2.png" alt="" /></span>
+            <span class="fade"><img src="@/assets/event3.png" alt="" /></span>
           </div>
         </transition>
       </div>
       <div class="eventCarouselCon">
         <transition name="row2">
           <div class="events-row2" v-if="classes.toggle_event_row2">
-            <span class="fade"
-              ><img src="@/assets/event4.png" alt=""
-            /></span>
-            <span class="fade"
-              ><img src="@/assets/event5.png" alt=""
-            /></span>
-            <span class="fade"
-              ><img src="@/assets/event6.png" alt=""
-            /></span>
+            <span class="fade"><img src="@/assets/event4.png" alt="" /></span>
+            <span class="fade"><img src="@/assets/event5.png" alt="" /></span>
+            <span class="fade"><img src="@/assets/event6.png" alt="" /></span>
           </div>
         </transition>
       </div>
@@ -876,7 +868,7 @@ export default {
       },
     });
 
-    let fadeElements = []
+    let fadeElements = [];
 
     const interval = () => {
       setInterval(() => {
@@ -983,10 +975,8 @@ export default {
           (classes.value.toggle_course_row2 = false),
           (classes.value.toggle_event_row2 = false),
           (classes.value.toggle_partner_row2 = false);
-        classes.value.fade = true;
-        console.log(classes.value.fade);
+        // console.log(classes.value.fade);
       }
-
     };
 
     onMounted(() => {
@@ -994,10 +984,9 @@ export default {
       toggleCarousel(togCarousel);
       classes.value.animations.circle = true;
       interval();
+      classes.value.fade = true;
 
-      fadeElements = Array.from(
-        document.getElementsByClassName("fade")
-      );
+      fadeElements = Array.from(document.getElementsByClassName("fade"));
       // console.log(fadeElements);
 
       document.addEventListener("scroll", handleScroll);
@@ -1032,7 +1021,7 @@ export default {
     };
     const isVisible = (el) => {
       classes.value.scroll.rect = el.getBoundingClientRect();
-      classes.value.scroll.elemTop = classes.value.scroll.rect.top +80;
+      classes.value.scroll.elemTop = classes.value.scroll.rect.top + 80;
       classes.value.scroll.elemBottom = classes.value.scroll.rect.bottom;
       // console.log("function", classes.value.scroll.elemTop, classes.value.scroll.elemBottom);
       return (
@@ -1117,7 +1106,16 @@ a {
 .fade {
   opacity: 0;
   transform: scale(0.8);
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.fade-in-enter-active, .fade-in-leave-active {
+  transition: all 1.2s ease-out;
+}
+.fade-in-enter-from, .fade-in-leave-to {
+  opacity: 0;
+}
+.fade-in-enter-to, .-fade-in-leave-from {
+  opacity: 1;
 }
 .fixed {
   position: fixed;

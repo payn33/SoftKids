@@ -315,6 +315,7 @@ form button span i {
   .input {
     display: flex !important;
     flex-direction: column;
+    height: 310px;
   }
   form span p {
     text-align: center;
