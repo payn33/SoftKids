@@ -989,7 +989,7 @@ export default {
       windowSize();
       toggleCarousel(togCarousel);
       classes.value.animations.circle = true;
-      // interval();
+      interval();
       classes.value.fade = true;
 
       fadeElements = Array.from(document.getElementsByClassName("fade"));
@@ -1128,7 +1128,7 @@ a {
 }
 .background {
   transform: scale(50);
-  transition: all 3s ease;
+  transition: all 9s ease-in-out;
 }
 .fixed {
   position: fixed;
@@ -1285,7 +1285,7 @@ nav > ul li:hover {
   height: 30px;
   border-radius: 50%;
   background: #ffd334;
-  animation: new 1s ease;
+  /* animation: new 1s ease; */
 
   /* transition: all 0.3s ease; */
   /* animation: myscale 1s ease;
