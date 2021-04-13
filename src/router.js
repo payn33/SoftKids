@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { Landing,   } from "./components/index";
+import { Landing,  } from "./components/index";
 
 const routes = [
   {

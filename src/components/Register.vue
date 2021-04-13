@@ -43,7 +43,7 @@
 
         <span>
           <p @click="classes.close_view()">Cancel</p>
-          <button @click="$emit">
+          <button>
             <p>Enter</p>
             <span><i class="fas fa-angle-right"></i></span>
           </button>
@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import emailjs from "emailjs-com";
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
 export default {
@@ -125,38 +126,71 @@ export default {
           classes.value.prompts.pop();
         }, 2500);
       } else {
-        classes.value.prompts.push("Sent successfully");
-        setTimeout(() => {
-          classes.value.prompts.pop();
-          classes.value.close_view();
-        }, 500);
+        sendMail();
       }
-      classes.value.reg.name = ""
-      classes.value.reg.gName = ""
-      classes.value.reg.number = ""
-      classes.value.reg.email = ""
     };
 
-    // const sendMail = () => {
-    //   try {
-    //     emailjs.send().then((response) => {
-    //   console.log(response.status);
-    //   if(response.status === 200) {
-    //     classes.value.prompts.push("Registered successfully")
-    //     setTimeout(() => {
-    //       classes.value.prompts.pop()
-    //     }, 3000);
-
-    //   }
-    // })
-    //   }
-    // }
-    return { classes, send };
+    const sendMail = () => {
+      try {
+        emailjs
+          .send(
+            "soft-kode",
+            "register",
+            {
+              from_name: classes.value.reg.name,
+              g_name: classes.value.reg.gName,
+              phone: classes.value.reg.number,
+              email: classes.value.reg.email,
+            },
+            "user_seAFh8PbzY2Nky73pYLQJ"
+          )
+          .then((response) => {
+            console.log(response.status);
+            if (response.status === 200) {
+              classes.value.prompts.push("Sent successfully");
+              setTimeout(() => {
+                classes.value.prompts.pop();
+              }, 3000);
+              // location.reload();
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            classes.value.prompts.push("an error occured, please try again");
+            setTimeout(() => {
+              classes.value.prompts.pop();
+            }, 3000);
+          });
+      } catch (error) {
+        classes.value.prompts.push("an error occured, please try again");
+        setTimeout(() => {
+          classes.value.prompts.pop();
+        }, 3000);
+      }
+      classes.value.reg.name = "";
+      classes.value.reg.gName = "";
+      classes.value.reg.number = "";
+      classes.value.reg.email = "";
+    };
+    return { classes, send, sendMail };
   },
 };
 </script>
 
 <style scoped>
+#h {
+  position: relative;
+  color: red;
+  animation: try 1s ease;
+}
+@keyframes try {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: 300px;
+  }
+}
 .bod {
   width: 100%;
   height: 100vh;
@@ -183,7 +217,7 @@ export default {
   top: 0px;
   height: 100px;
   padding-top: 20px;
-  z-index: 98;
+  z-index: 99;
 }
 .prompt div {
   width: 55%;

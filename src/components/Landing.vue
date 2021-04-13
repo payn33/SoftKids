@@ -81,126 +81,132 @@
         </ul>
       </div>
     </transition>
-   
 
-   <transition name="fade-in">
+    <transition name="fade-in">
       <div class="head" v-if="classes.fade">
-      <nav>
-        <span>
-          <img src="@/assets/logo.svg" alt="" />
-        </span>
+        <nav>
+          <span>
+            <img src="@/assets/logo.svg" alt="" />
+          </span>
 
-        <div class="burger" @click="classes.burger = !classes.burger">
-          <span></span>
-        </div>
-
-        <ul>
-          <a href="#partners">
-            <li>Partners</li>
-          </a>
-          <a href="#about">
-            <li>About</li>
-          </a>
-
-          <a href="#courses">
-            <li>Courses</li>
-          </a>
-          <a href="#contact">
-            <li>Contact</li>
-          </a>
-          <!-- <router-link :to="{name: 'auth'}"> -->
-          <li
-            :class="{ register: classes.toggle_view }"
-            @click="classes.open_view()"
-          >
-            Register
-          </li>
-          <!-- </router-link> -->
-        </ul>
-      </nav>
-      <div class="left">
-        <svg
-          id="half-circle"
-          width="98"
-          height="140"
-          viewBox="0 0 98 196"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M-4.28372e-06 196C25.9912 196 50.9179 185.675 69.2965 167.296C87.675 148.918 98 123.991 98 98C98 72.0088 87.675 47.0821 69.2965 28.7035C50.9179 10.325 25.9912 5.06068e-06 1.90813e-05 0L0 98L-4.28372e-06 196Z"
-            fill="url(#paint0_linear)"
-          />
-          <defs>
-            <linearGradient
-              id="paint0_linear"
-              x1="-98"
-              y1="98"
-              x2="98"
-              y2="98"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#4CB8C4" />
-              <stop offset="1" stop-color="#3CD3AD" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      <div class="right">
-        <div class="right-content">
-          <div class="circles">
-            <transition name="circles">
-              <div
-                class="sm-yellow-circle"
-                v-if="classes.animations.smCircle"
-              ></div>
-            </transition>
-            <transition name="circles">
-              <div
-                class="md-blue-circle"
-                v-if="classes.animations.circle"
-              ></div>
-            </transition>
+          <div class="burger" @click="classes.burger = !classes.burger">
+            <span></span>
           </div>
-          <img class="img" src="@/assets/child.png" alt="child" rel="preload" />
-        </div>
-      </div>
-      <div class="text">
-        <h1>The New</h1>
-        <h1>Generation of</h1>
-        <h1>Smart Kids in Tech</h1>
-        <small
-          >We are in charge of creating the next generation of wold tech leaders
-        </small>
-        <small>in making the society a better place in tech</small>
-        <a href="#contact">
-          <button>
-            <p>Contact Us</p>
-            <span><i class="fas fa-angle-right"></i></span>
-          </button>
-        </a>
-      </div>
 
-      <div class="bottom-circle">
-        <div class="astronaut-box">
-          <p>Jessica Ikechukwu</p>
-          <h3>Future astronaut</h3>
-          <p>
-            <q>
-              I want to build a world where children are encouraged to learn
-              about tech and more studies are chosen to be more specific
-            </q>
-          </p>
+          <ul>
+            <a href="#partners">
+              <li>Partners</li>
+            </a>
+            <a href="#about">
+              <li>About</li>
+            </a>
+
+            <a href="#courses">
+              <li>Courses</li>
+            </a>
+            <a href="#contact">
+              <li>Contact</li>
+            </a>
+            <!-- <router-link :to="{name: 'auth'}"> -->
+            <li
+              :class="{ register: classes.toggle_view }"
+              @click="classes.open_view()"
+            >
+              Register
+            </li>
+            <!-- </router-link> -->
+          </ul>
+        </nav>
+        <div class="left">
+          <svg
+            :class="{ background: classes.animations.color }"
+            id="half-circle"
+            width="98"
+            height="140"
+            viewBox="0 0 98 196"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M-4.28372e-06 196C25.9912 196 50.9179 185.675 69.2965 167.296C87.675 148.918 98 123.991 98 98C98 72.0088 87.675 47.0821 69.2965 28.7035C50.9179 10.325 25.9912 5.06068e-06 1.90813e-05 0L0 98L-4.28372e-06 196Z"
+              fill="url(#paint0_linear)"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear"
+                x1="-98"
+                y1="98"
+                x2="98"
+                y2="98"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#4CB8C4" />
+                <stop offset="1" stop-color="#3CD3AD" />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
-        <transition name="circles">
-          <div
-            class="lg-yellow-circle"
-            v-if="classes.animations.bgCircle"
-          ></div>
-        </transition>
+        <div class="right">
+          <div class="right-content">
+            <div class="circles">
+              <transition name="circles">
+                <div
+                  class="sm-yellow-circle"
+                  v-if="classes.animations.smCircle"
+                ></div>
+              </transition>
+              <transition name="circles">
+                <div
+                  class="md-blue-circle"
+                  v-if="classes.animations.circle"
+                ></div>
+              </transition>
+            </div>
+            <img
+              class="img"
+              src="@/assets/child.png"
+              alt="child"
+              rel="preload"
+            />
+          </div>
+        </div>
+        <div class="text">
+          <h1>The New</h1>
+          <h1>Generation of</h1>
+          <h1>Smart Kids in Tech</h1>
+          <small
+            >We are in charge of creating the next generation of wold tech
+            leaders
+          </small>
+          <small>in making the society a better place in tech</small>
+          <a href="#contact">
+            <button>
+              <p>Contact Us</p>
+              <span><i class="fas fa-angle-right"></i></span>
+            </button>
+          </a>
+        </div>
+
+        <div class="bottom-circle">
+          <div class="astronaut-box">
+            <p>Jessica Ikechukwu</p>
+            <h3>Future astronaut</h3>
+            <p>
+              <q>
+                I want to build a world where children are encouraged to learn
+                about tech and more studies are chosen to be more specific
+              </q>
+            </p>
+          </div>
+          <transition name="circles">
+            <div
+              class="lg-yellow-circle"
+              v-if="classes.animations.bgCircle"
+            ></div>
+          </transition>
+        </div>
       </div>
-    </div>
-   </transition>
+    </transition>
 
     <div class="partners fade" id="partners">
       <h1>Our Partners</h1>
@@ -389,7 +395,7 @@
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
-                  d="M24.0094 5.22003C24.8269 6.19196 25.5005 7.276¬39 26.0094 8.44003C26.7507 10.1366 27.132 11.9685 27.1294 13.82C27.1239 21.2934 21.0727 27.3535 13.5994 27.37C11.8605 27.3691 10.1384 27.0294 8.52939 26.37C7.38174 25.914 6.30439 25.2979 5.32939 24.54C1.18237 21.3796 -0.77959 16.1174 0.286103 11.0135C1.35179 5.9095 5.25548 1.87207 10.3207 0.635107C15.3858 -0.601855 20.7111 1.18179 24.0094 5.22003ZM18.1094 4.01003C16.6936 3.35117 15.1509 3.00986 13.5894 3.01003L13.5994 2.99003C9.89642 2.98727 6.45021 4.88181 4.46836 8.00977C2.4865 11.1377 2.24534 15.063 3.82939 18.41C4.28108 17.9355 4.55943 17.3224 4.61939 16.67C4.9831 14.1574 6.9568 12.1837 9.46939 11.82C10.887 11.6915 12.0191 10.5844 12.1794 9.17003C12.5431 6.65744 14.5168 4.68374 17.0294 4.32003C17.4012 4.26338 17.7642 4.1592 18.1094 4.01003ZM5.31939 20.82C5.35939 20.7834 5.39939 20.7478 5.4394 20.7122L5.43946 20.7122C5.51943 20.6411 5.59941 20.57 5.67939 20.49C6.56904 19.6275 7.1401 18.4889 7.29939 17.26C7.36397 16.5693 7.67239 15.9241 8.16939 15.44C8.64763 14.9422 9.29136 14.6363 9.97939 14.58C12.492 14.2163 14.4657 12.2426 14.8294 9.73003C14.8726 9.00754 15.1827 8.32687 15.6994 7.82003C16.1894 7.33188 16.8393 7.03713 17.5294 6.99003C18.6533 6.83539 19.7015 6.33574 20.5294 5.56003C21.472 6.3421 22.2707 7.28292 22.8894 8.34003C22.8514 8.39138 22.8078 8.43833 22.7594 8.48003C22.2821 8.98222 21.6392 9.29479 20.9494 9.36003C18.4337 9.71747 16.4568 11.6943 16.0994 14.21C15.9541 15.6294 14.8293 16.75 13.4094 16.89C10.8898 17.2509 8.90579 19.2227 8.52939 21.74C8.47557 22.2288 8.30773 22.698 8.03939 23.11C7.01338 22.5009 6.09447 21.7272 5.31939 20.82ZM10.5894 24.26C11.5648 24.5398 12.5747 24.6811 13.5894 24.68V24.63C16.9385 24.617 20.0927 23.0538 22.1315 20.3968C24.1703 17.7397 24.8637 14.2883 24.0094 11.05C23.2502 11.5868 22.3714 11.9301 21.4494 12.05C20.0334 12.1945 18.9139 13.3141 18.7694 14.73C18.4046 17.2458 16.4259 19.2204 13.9094 19.58C12.4934 19.7245 11.3739 20.8441 11.2294 22.26C11.14 22.9602 10.923 23.638 10.5894 24.26Z"
+                  d="M 24.0094 5.22003C24.8269 6.19196 25.5005 7.27639 26.0094 8.44003C26.7507 10.1366 27.132 11.9685 27.1294 13.82C27.1239 21.2934 21.0727 27.3535 13.5994 27.37C11.8605 27.3691 10.1384 27.0294 8.52939 26.37C7.38174 25.914 6.30439 25.2979 5.32939 24.54C1.18237 21.3796 -0.77959 16.1174 0.286103 11.0135C1.35179 5.9095 5.25548 1.87207 10.3207 0.635107C15.3858 -0.601855 20.7111 1.18179 24.0094 5.22003ZM18.1094 4.01003C16.6936 3.35117 15.1509 3.00986 13.5894 3.01003L13.5994 2.99003C9.89642 2.98727 6.45021 4.88181 4.46836 8.00977C2.4865 11.1377 2.24534 15.063 3.82939 18.41C4.28108 17.9355 4.55943 17.3224 4.61939 16.67C4.9831 14.1574 6.9568 12.1837 9.46939 11.82C10.887 11.6915 12.0191 10.5844 12.1794 9.17003C12.5431 6.65744 14.5168 4.68374 17.0294 4.32003C17.4012 4.26338 17.7642 4.1592 18.1094 4.01003ZM5.31939 20.82C5.35939 20.7834 5.39939 20.7478 5.4394 20.7122L5.43946 20.7122C5.51943 20.6411 5.59941 20.57 5.67939 20.49C6.56904 19.6275 7.1401 18.4889 7.29939 17.26C7.36397 16.5693 7.67239 15.9241 8.16939 15.44C8.64763 14.9422 9.29136 14.6363 9.97939 14.58C12.492 14.2163 14.4657 12.2426 14.8294 9.73003C14.8726 9.00754 15.1827 8.32687 15.6994 7.82003C16.1894 7.33188 16.8393 7.03713 17.5294 6.99003C18.6533 6.83539 19.7015 6.33574 20.5294 5.56003C21.472 6.3421 22.2707 7.28292 22.8894 8.34003C22.8514 8.39138 22.8078 8.43833 22.7594 8.48003C22.2821 8.98222 21.6392 9.29479 20.9494 9.36003C18.4337 9.71747 16.4568 11.6943 16.0994 14.21C15.9541 15.6294 14.8293 16.75 13.4094 16.89C10.8898 17.2509 8.90579 19.2227 8.52939 21.74C8.47557 22.2288 8.30773 22.698 8.03939 23.11C7.01338 22.5009 6.09447 21.7272 5.31939 20.82ZM10.5894 24.26C11.5648 24.5398 12.5747 24.6811 13.5894 24.68V24.63C16.9385 24.617 20.0927 23.0538 22.1315 20.3968C24.1703 17.7397 24.8637 14.2883 24.0094 11.05C23.2502 11.5868 22.3714 11.9301 21.4494 12.05C20.0334 12.1945 18.9139 13.3141 18.7694 14.73C18.4046 17.2458 16.4259 19.2204 13.9094 19.58C12.4934 19.7245 11.3739 20.8441 11.2294 22.26C11.14 22.9602 10.923 23.638 10.5894 24.26Z"
                   fill="#696871"
                 />
               </svg>
@@ -848,6 +854,7 @@ export default {
       },
       prompts: [],
       animations: {
+        color: false,
         circle: false,
         smCircle: false,
         bgCircle: false,
@@ -873,18 +880,17 @@ export default {
     const interval = () => {
       setInterval(() => {
         classes.value.animations.circle = !classes.value.animations.circle;
-      }, 1000);
+      }, 4000);
       setInterval(() => {
         classes.value.animations.bgCircle = !classes.value.animations.bgCircle;
-      }, 1500);
+      }, 3000);
       setInterval(() => {
         classes.value.animations.smCircle = !classes.value.animations.smCircle;
-      }, 1900);
-
-      setInterval(() => {
-        classes.value.animations.txt = !classes.value.animations.txt;
-      }, 5000);
+      }, 3000);
     };
+    setInterval(() => {
+      classes.value.animations.color = !classes.value.animations.color
+    },  3000);
     const send = () => {
       if (
         classes.value.email.mail == "" &&
@@ -920,12 +926,12 @@ export default {
       try {
         emailjs
           .send(
-            "test_id",
+            "soft-kode",
             "test_templateid",
             {
               email: classes.value.email.mail,
-              name: classes.value.email.subject,
               message: classes.value.email.content,
+              from_name: classes.value.email.name,
             },
             "user_seAFh8PbzY2Nky73pYLQJ"
           )
@@ -936,7 +942,7 @@ export default {
               setTimeout(() => {
                 classes.value.prompts.pop();
               }, 3000);
-              location.reload();
+              // location.reload();
             }
           })
           .catch((err) => {
@@ -983,7 +989,7 @@ export default {
       windowSize();
       toggleCarousel(togCarousel);
       classes.value.animations.circle = true;
-      interval();
+      // interval();
       classes.value.fade = true;
 
       fadeElements = Array.from(document.getElementsByClassName("fade"));
@@ -1108,14 +1114,21 @@ a {
   transform: scale(0.8);
   transition: all 0.3s ease-out;
 }
-.fade-in-enter-active, .fade-in-leave-active {
+.fade-in-enter-active,
+.fade-in-leave-active {
   transition: all 2.2s ease-out;
 }
-.fade-in-enter-from, .fade-in-leave-to {
+.fade-in-enter-from,
+.fade-in-leave-to {
   opacity: 0;
 }
-.fade-in-enter-to, .-fade-in-leave-from {
+.fade-in-enter-to,
+.-fade-in-leave-from {
   opacity: 1;
+}
+.background {
+  transform: scale(50);
+  transition: all 3s ease;
 }
 .fixed {
   position: fixed;
@@ -1191,6 +1204,7 @@ nav > ul li:hover {
   position: absolute;
   left: -15px;
   top: 20%;
+  transition: all 2s ease-in-out;
 }
 .head .text {
   display: flex;
@@ -1214,7 +1228,9 @@ nav > ul li:hover {
   color: #fff;
   text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   transition: all 1s ease-in;
+  position: relative;
 }
+
 .scale {
   transform: scale(1.1) !important;
 }
@@ -1285,7 +1301,7 @@ nav > ul li:hover {
 }
 .circles-enter-active,
 .circles-leave-active {
-  transition: all 0.5s ease-in-out;
+  transition: all 3s ease-in-out;
 }
 .circles-enter-from,
 .circles-leave-to {
@@ -1728,8 +1744,15 @@ footer .social span div svg {
 @media only screen and (max-width: 700px) {
   .head .left {
     height: 80%;
-    clip-path: unset;
-    -webkit-clip-path: unset;
+    clip-path: polygon(0 0, 100% 0, 100% 66%, 75% 100%, 25% 100%, 0 85%);
+    -webkit-clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 66%,
+      75% 100%,
+      25% 100%,
+      0 85%
+    );
   }
   .head .right {
     top: unset;
@@ -2030,7 +2053,7 @@ footer .social span div svg {
     width: 85%;
     min-height: 140px;
     max-height: 200px;
-    transform: translate(0px) !important;
+    transform: translate(0px);
   }
   .events div span:nth-child(2) {
     margin: 30px 0px;
