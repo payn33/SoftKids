@@ -175,10 +175,9 @@
           <h1>Generation of</h1>
           <h1>Smart Kids in Tech</h1>
           <small
-            >We are in charge of creating the next generation of wold tech
-            leaders
+            >Our goal is to build the next generation of world tech leaders.
           </small>
-          <small>in making the society a better place in tech</small>
+          <small>We seek to advance the society by improved technology.</small>
           <a href="#contact">
             <button>
               <p>Contact Us</p>
@@ -211,7 +210,7 @@
     <div class="partners fade" id="partners">
       <h1>Our Partners</h1>
       <div class="partnerCarouselCon">
-        <transition name="row1">
+        <transition :name="classes.transitionName">
           <div class="logo-row1 logo-row" v-if="classes.toggle_partner_row1">
             <span class="leftTop">
               <svg
@@ -318,7 +317,7 @@
       </div>
 
       <div class="partnerCarouselCon">
-        <transition name="row2">
+        <transition :name="classes.transitionName">
           <div class="logo-row2 logo-row" v-if="classes.toggle_partner_row2">
             <span class="center">
               <svg
@@ -427,19 +426,13 @@
 
     <section class="slide-button">
       <span
-        @click="
-          (classes.toggle_partner_row2 = !classes.toggle_partner_row2),
-            (classes.toggle_partner_row1 = !classes.toggle_partner_row1)
-        "
+        @click="carousel.partners.slideLeft()"
         :class="{
           partnerSlideButtonBackground: classes.toggle_partner_row1,
         }"
       ></span>
       <span
-        @click="
-          (classes.toggle_partner_row2 = !classes.toggle_partner_row2),
-            (classes.toggle_partner_row1 = !classes.toggle_partner_row1)
-        "
+        @click="carousel.partners.slideRight()"
         :class="{
           partnerSlideButtonBackground: classes.toggle_partner_row2,
         }"
@@ -456,12 +449,14 @@
         <div class="about-text fade">
           <h2>We create the future leaders in Effurun</h2>
           <p>
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-            sint. Velit officia consequat duis enim velit mollit. Exercitation
-            veniam consequat sunt nostrud amet. Amet minim mollit non deserunt
-            ullamco est sit aliqua dolor do amet sint. Velit officia consequat
-            duis enim velit mollit. Exercitation veniam consequat sunt nostrud
-            amet.Amet minim mollit non deserunt
+            Children are passionate young beings with an open mind and a
+            readiness to learn. With a tender spot for children, we are
+            committed to their growth, improvement and well-being. It is no
+            secret that there are dangers attached to the internet that little
+            children should not be exposed to, but they will not be able to
+            distinguish the good from the bad if they are not taught. Softkode
+            technologies stands to educate the little one of this generation on
+            the benefits and positive sides of technology and the internet.
           </p>
 
           <a href="#contact">
@@ -504,7 +499,7 @@
       </svg>
 
       <div class="eventCarouselCon">
-        <transition name="row1">
+        <transition :name="classes.transitionName">
           <div class="events-row1" v-if="classes.toggle_event_row1">
             <span class="fade"><img src="@/assets/event1.png" alt="" /></span>
             <span class="fade"><img src="@/assets/event2.png" alt="" /></span>
@@ -513,7 +508,7 @@
         </transition>
       </div>
       <div class="eventCarouselCon">
-        <transition name="row2">
+        <transition :name="classes.transitionName">
           <div class="events-row2" v-if="classes.toggle_event_row2">
             <span class="fade"><img src="@/assets/event4.png" alt="" /></span>
             <span class="fade"><img src="@/assets/event5.png" alt="" /></span>
@@ -525,19 +520,13 @@
 
     <section class="slide-button">
       <span
-        @click="
-          (classes.toggle_event_row2 = !classes.toggle_event_row2),
-            (classes.toggle_event_row1 = !classes.toggle_event_row1)
-        "
+        @click="carousel.events.slideLeft()"
         :class="{
           partnerSlideButtonBackground: classes.toggle_event_row1,
         }"
       ></span>
       <span
-        @click="
-          (classes.toggle_event_row2 = !classes.toggle_event_row2),
-            (classes.toggle_event_row1 = !classes.toggle_event_row1)
-        "
+        @click="carousel.events.slideRight()"
         :class="{
           partnerSlideButtonBackground: classes.toggle_event_row2,
         }"
@@ -548,7 +537,7 @@
       <h1>Courses</h1>
 
       <div class="courseCarouselCon">
-        <transition name="row1">
+        <transition :name="classes.transitionName">
           <div class="courses-row1" v-if="classes.toggle_course_row1">
             <span class="fade"
               ><img src="@/assets/courses1.png" alt="" />
@@ -570,7 +559,7 @@
       </div>
 
       <div class="courseCarouselCon">
-        <transition name="row2">
+        <transition :name="classes.transitionName">
           <div class="courses-row2" v-if="classes.toggle_course_row2">
             <span class="fade"
               ><img src="@/assets/courses4.png" alt="" />
@@ -594,19 +583,13 @@
 
     <section class="slide-button">
       <span
-        @click="
-          (classes.toggle_course_row2 = !classes.toggle_course_row2),
-            (classes.toggle_course_row1 = !classes.toggle_course_row1)
-        "
+        @click="carousel.courses.slideLeft()"
         :class="{
           partnerSlideButtonBackground: classes.toggle_course_row1,
         }"
       ></span>
       <span
-        @click="
-          (classes.toggle_course_row2 = !classes.toggle_course_row2),
-            (classes.toggle_course_row1 = !classes.toggle_course_row1)
-        "
+        @click="carousel.courses.slideRight()"
         :class="{
           partnerSlideButtonBackground: classes.toggle_course_row2,
         }"
@@ -661,10 +644,18 @@
 
         <ul>
           <p>Links</p>
-          <li>Partners</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Courses</li>
+          <a href="#partners">
+            <li>Partners</li>
+          </a>
+          <a href="#about">
+            <li>About</li>
+          </a>
+          <a href="#contact">
+            <li>Contact</li>
+          </a>
+          <a href="#courses">
+            <li>Courses</li>
+          </a>
         </ul>
 
         <div class="social">
@@ -853,6 +844,7 @@ export default {
         content: "",
       },
       prompts: [],
+      transitionName: "",
       animations: {
         color: false,
         circle: false,
@@ -860,18 +852,61 @@ export default {
         bgCircle: false,
       },
       fade: false,
-      // fadeElements: [],
-      // swipe: {
-      //   touchstartX: null,
-      //   touchstartY: null,
-      //   touchendX: null,
-      //   touchendY: null,
-      // }
+      fadeElements: [],
+      swipe: {
+        touchstartX: null,
+        touchstartY: null,
+        touchendX: null,
+        touchendY: null,
+      },
       scroll: {
         fadeElem: null,
         rect: null,
         elemTop: null,
         elemBottom: null,
+      },
+    });
+
+    const carousel = ref({
+      partners: {
+        slideRight: () => {
+          classes.value.toggle_partner_row2 = !classes.value
+            .toggle_partner_row2;
+          classes.value.toggle_partner_row1 = !classes.value
+            .toggle_partner_row1;
+          classes.value.transitionName = "row2";
+        },
+        slideLeft: () => {
+          classes.value.toggle_partner_row2 = !classes.value
+            .toggle_partner_row2;
+          classes.value.toggle_partner_row1 = !classes.value
+            .toggle_partner_row1;
+          classes.value.transitionName = "row1";
+        },
+      },
+      events: {
+        slideRight: () => {
+          classes.value.toggle_event_row2 = !classes.value.toggle_event_row2;
+          classes.value.toggle_event_row1 = !classes.value.toggle_event_row1;
+          classes.value.transitionName = "row2";
+        },
+        slideLeft: () => {
+          classes.value.toggle_event_row2 = !classes.value.toggle_event_row2;
+          classes.value.toggle_event_row1 = !classes.value.toggle_event_row1;
+          classes.value.transitionName = "row1";
+        },
+      },
+      courses: {
+        slideRight: () => {
+          classes.value.toggle_course_row2 = !classes.value.toggle_course_row2;
+          classes.value.toggle_course_row1 = !classes.value.toggle_course_row1;
+          classes.value.transitionName = "row2";
+        },
+        slideLeft: () => {
+          classes.value.toggle_course_row2 = !classes.value.toggle_course_row2;
+          classes.value.toggle_course_row1 = !classes.value.toggle_course_row1;
+          classes.value.transitionName = "row1";
+        },
       },
     });
 
@@ -889,8 +924,8 @@ export default {
       }, 3000);
     };
     setInterval(() => {
-      classes.value.animations.color = !classes.value.animations.color
-    },  3000);
+      classes.value.animations.color = !classes.value.animations.color;
+    }, 3000);
     const send = () => {
       if (
         classes.value.email.mail == "" &&
@@ -997,21 +1032,72 @@ export default {
 
       document.addEventListener("scroll", handleScroll);
       handleScroll();
-      // document.querySelector(".partnerCarouselCon").addEventListener("touchstart", (event) => {
-      //   console.log('start');
-      //   classes.value.swipe.touchstartX = event.changedTouches[0].screenX
-      //   // classes.value.swipe.touchstartY = event.changedTouches[0].screenY
-      // }, false)
 
-      //  document.querySelector(".partnerCarouselCon").addEventListener("touchend", (event) => {
-      //   console.log('end');
-      //   classes.value.swipe.touchendX = event.changedTouches[0].screenX
-      //   // classes.value.swipe.touchendY = event.changedTouches[0].screenY
-      //   handleGesture()
-      // }, false)
+      document.querySelector("#partners").addEventListener(
+        "touchstart",
+        (event) => {
+          console.log("start");
+          classes.value.swipe.touchstartX = event.changedTouches[0].screenX;
+          // classes.value.swipe.touchstartY = event.changedTouches[0].screenY
+        },
+        false
+      );
+
+      document.querySelector("#partners").addEventListener(
+        "touchend",
+        (event) => {
+          console.log("end");
+          classes.value.swipe.touchendX = event.changedTouches[0].screenX;
+          // classes.value.swipe.touchendY = event.changedTouches[0].screenY
+          handleGesture();
+        },
+        false
+      );
+
+      document.querySelector(".events").addEventListener(
+        "touchstart",
+        (event) => {
+          console.log("start");
+          classes.value.swipe.touchstartX = event.changedTouches[0].screenX;
+          // classes.value.swipe.touchstartY = event.changedTouches[0].screenY
+        },
+        false
+      );
+
+      document.querySelector(".events").addEventListener(
+        "touchend",
+        (event) => {
+          console.log("end");
+          classes.value.swipe.touchendX = event.changedTouches[0].screenX;
+          // classes.value.swipe.touchendY = event.changedTouches[0].screenY
+          handleGesture2();
+        },
+        false
+      );
+
+      document.querySelector(".courses").addEventListener(
+        "touchstart",
+        (event) => {
+          console.log("start");
+          classes.value.swipe.touchstartX = event.changedTouches[0].screenX;
+          // classes.value.swipe.touchstartY = event.changedTouches[0].screenY
+        },
+        false
+      );
+
+      document.querySelector(".courses").addEventListener(
+        "touchend",
+        (event) => {
+          console.log("end");
+          classes.value.swipe.touchendX = event.changedTouches[0].screenX;
+          // classes.value.swipe.touchendY = event.changedTouches[0].screenY
+          handleGesture3();
+        },
+        false
+      );
     });
     onUnmounted(() => {
-      document.removeEventListener("scroll", handleScroll);
+      // document.removeEventListener("scroll", handleScroll);
     });
     const handleScroll = () => {
       for (let i = 0; i < fadeElements.length; i++) {
@@ -1035,19 +1121,41 @@ export default {
         classes.value.scroll.elemBottom >= 0
       );
     };
-    // const handleGesture = () => {
-    //   console.log("handle");
-    //   if (classes.value.swipe.touchendX < classes.value.swipe.touchstartX ) {
-    //     console.log("left");
-    //     classes.value.toggle_partner_row1 = !classes.value.toggle_partner_row1
-    //     classes.value.toggle_partner_row2 = !classes.value.toggle_partner_row2
-    //   }
-    //    else if (classes.value.swipe.touchendX > classes.value.swipe.touchstartX ) {
-    //     console.log("right");
-    //     classes.value.toggle_partner_row1 = true
-    //     classes.value.toggle_partner_row2 = false
-    //   }
-    // };
+    const handleGesture = () => {
+      console.log("handle");
+
+      if (classes.value.swipe.touchendX < classes.value.swipe.touchstartX) {
+        console.log("left");
+        carousel.value.partners.slideRight();
+      }
+
+      if (classes.value.swipe.touchendX > classes.value.swipe.touchstartX) {
+        console.log("right");
+        carousel.value.partners.slideLeft();
+      }
+    };
+    const handleGesture2 = () => {
+      console.log("handle");
+
+      if (classes.value.swipe.touchendX < classes.value.swipe.touchstartX) {
+        console.log("left");
+        carousel.value.events.slideRight();
+      }
+      if (classes.value.swipe.touchendX > classes.value.swipe.touchstartX) {
+        console.log("right");
+        carousel.value.events.slideLeft();
+      }
+    };
+    const handleGesture3 = () => {
+      if (classes.value.swipe.touchendX < classes.value.swipe.touchstartX) {
+        console.log("left");
+        carousel.value.courses.slideRight();
+      }
+      if (classes.value.swipe.touchendX > classes.value.swipe.touchstartX) {
+        console.log("right");
+        carousel.value.courses.slideLeft();
+      }
+    };
     setInterval(() => {
       windowSize();
       toggleCarousel(togCarousel);
@@ -1061,7 +1169,10 @@ export default {
       toggleCarousel,
       handleScroll,
       fadeElements,
-      // handleGesture,
+      carousel,
+      handleGesture,
+      handleGesture2,
+      handleGesture3,
       isVisible,
     };
   },
@@ -1694,6 +1805,7 @@ footer ul p {
 }
 footer ul li {
   cursor: pointer;
+  color: black;
   font-weight: bold;
   padding: 0 0 15px 0;
   list-style-type: none;
@@ -1741,6 +1853,58 @@ footer .social span div svg {
   border-radius: 30px 30px 0px 0px;
 }
 
+.prompt-enter-active,
+.prompt-leave-active,
+.row1-enter-active,
+.partner-Row1-leave-active,
+.row2-enter-active,
+.partner-Row2-leave-active,
+.mobnav-enter-active,
+.mobnav-leave-active,
+.overlay-enter-active,
+.overlay-leave-active,
+.reg-enter-active,
+.reg-leave-active {
+  transition: all 0.4s ease-in-out;
+}
+.row1-enter-from,
+.row1-leave-to {
+  transform: translateX(-50%);
+  opacity: 0;
+}
+.row1-enter-to,
+.row1-leave-from {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.row2-enter-from,
+.row2-leave-to {
+  transform: translateX(50%);
+  opacity: 0;
+}
+.row2-enter-to,
+.row2-leave-from {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.prompt-enter-from,
+.prompt-leave-to {
+  transform: translateY(-50px);
+  opacity: 0;
+}
+.prompt-enter-to,
+.prompt-leave-from {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.reg-enter-from,
+.reg-leave-to {
+  opacity: 0;
+}
+.reg-enter-to,
+.reg-leave-from {
+  opacity: 1;
+}
 @media only screen and (max-width: 700px) {
   .head .left {
     height: 80%;
@@ -1962,58 +2126,6 @@ footer .social span div svg {
     background: #aaadb0 !important;
   }
 
-  .prompt-enter-active,
-  .prompt-leave-active,
-  .row1-enter-active,
-  .partner-Row1-leave-active,
-  .row2-enter-active,
-  .partner-Row2-leave-active,
-  .mobnav-enter-active,
-  .mobnav-leave-active,
-  .overlay-enter-active,
-  .overlay-leave-active,
-  .reg-enter-active,
-  .reg-leave-active {
-    transition: all 0.4s ease-in-out;
-  }
-  .row1-enter-from,
-  .row1-leave-to {
-    transform: translateX(-50%);
-    /* opacity: 0; */
-  }
-  .row1-enter-to,
-  .row1-leave-from {
-    transform: translateX(0%);
-    /* opacity: 1; */
-  }
-  .row2-enter-from,
-  .row2-leave-to {
-    transform: translateX(50%);
-    /* opacity: 0; */
-  }
-  .row2-enter-to,
-  .row2-leave-from {
-    transform: translateX(0%);
-    /* opacity: 1; */
-  }
-  .prompt-enter-from,
-  .prompt-leave-to {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  .prompt-enter-to,
-  .prompt-leave-from {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-  .reg-enter-from,
-  .reg-leave-to {
-    opacity: 0;
-  }
-  .reg-enter-to,
-  .reg-leave-from {
-    opacity: 1;
-  }
   .about .about-content {
     flex-direction: column;
     align-items: center;
