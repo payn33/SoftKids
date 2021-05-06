@@ -11,14 +11,18 @@
         <form novalidate @submit.prevent="send()" v-if="classes.individual">
           <header>
             <h1>Register</h1>
-            <h1
-              @click="
-                (classes.individual = !classes.individual),
-                  (classes.school = !classes.school)
-              "
-            >
-              as individual >
-            </h1>
+            <span>
+              <h1
+                @click="
+                  (classes.individual = !classes.individual),
+                    (classes.school = !classes.school)
+                "
+              >
+                as individual
+                <p>></p>
+              </h1>
+              <h2>as school</h2>
+            </span>
           </header>
 
           <div class="input">
@@ -62,14 +66,18 @@
         <form novalidate @submit.prevent="send2()" v-if="classes.school">
           <header>
             <h1>Register</h1>
-            <h1
-              @click="
-                (classes.individual = !classes.individual),
-                  (classes.school = !classes.school)
-              "
-            >
-              as school >
-            </h1>
+            <span>
+              <h1
+                @click="
+                  (classes.individual = !classes.individual),
+                    (classes.school = !classes.school)
+                "
+              >
+                as school
+                <p>></p>
+              </h1>
+              <h2>as individual</h2>
+            </span>
           </header>
 
           <div class="input">
@@ -291,7 +299,7 @@ export default {
       classes.value.reg.email = "";
     };
 
-      const sendMail2 = () => {
+    const sendMail2 = () => {
       try {
         emailjs
           .send(
@@ -299,8 +307,9 @@ export default {
             "register",
             {
               from_name: classes.value.regSchool.sName,
-              g_name: 'Number of classes: ' + classes.value.regSchool.class,
-              studentNo: 'Number of students: ' + classes.value.regSchool.studentNo,
+              g_name: "Number of classes: " + classes.value.regSchool.class,
+              studentNo:
+                "Number of students: " + classes.value.regSchool.studentNo,
               phone: classes.value.regSchool.phone,
               email: classes.value.regSchool.email,
             },
@@ -344,16 +353,16 @@ export default {
 #h {
   position: relative;
   color: red;
-  animation: try 1s ease;
+  /* animation: try 1s ease; */
 }
-@keyframes try {
+/* @keyframes try {
   0% {
     top: 0px;
   }
   100% {
     top: 300px;
   }
-}
+} */
 .bod {
   width: 100%;
   height: 100vh;
@@ -435,13 +444,22 @@ form header h1 {
   font-weight: lighter;
   font-size: 26px;
 }
-form header h1:first-of-type {
+form header > h1 {
   padding-right: 20px;
 }
-form header h1:last-of-type {
+form header span h1 {
   font-size: 16px;
   opacity: 0.6;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+form header span h1 p {
+  transform: translateX(5px) rotate(90deg);
+}
+form header span h2 {
+  display: none;
 }
 form .input {
   display: grid;
@@ -529,6 +547,11 @@ form button span i {
   form span p {
     text-align: center;
     padding-right: 0px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  form header span h1 {
+    font-size: 12px;
   }
 }
 </style>
