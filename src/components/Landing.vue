@@ -661,7 +661,11 @@
         <div class="social">
           <p>Socials</p>
           <span>
-            <a href="https://www.linkedin.com/company/softkodes-tech-lim/" target="_blank">
+            <a
+              href="https://www.linkedin.com/company/softkodes-tech-lim/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <div>
                 <svg
                   width="22"
@@ -677,7 +681,11 @@
                 </svg>
               </div>
             </a>
-            <a href="https://twitter.com/SoftkodesL" target="_blank">
+            <a
+              href="https://twitter.com/SoftkodesL"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <div>
                 <svg
                   width="22"
@@ -693,7 +701,11 @@
                 </svg>
               </div>
             </a>
-            <a href="https://www.instagram.com/softkodesworld/" target="_blank">
+            <a
+              href="https://www.instagram.com/softkodesworld/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <div>
                 <svg
                   width="20"
@@ -709,7 +721,11 @@
                 </svg>
               </div>
             </a>
-            <a href="https://www.youtube.com/channel/UCyElAgJRr6Pz1JK0FWV6Pp" target="_blank">
+            <a
+              href="https://www.youtube.com/channel/UCyElAgJRr6Pz1JK0FWV6Pp"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <div>
                 <svg
                   width="30"
