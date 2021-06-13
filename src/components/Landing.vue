@@ -227,7 +227,7 @@
                   fill="#696871"
                 />
               </svg>
-              <p>Logoipsum</p>
+              <p>logoipsum</p>
             </span>
 
             <span class="leftBottom">
@@ -245,7 +245,7 @@
                   fill="#696871"
                 />
               </svg>
-              <p>Logoipsum</p>
+              <p>logoipsum</p>
             </span>
 
             <span class="center">
@@ -272,7 +272,7 @@
                 />
               </svg>
 
-              <p>Logoipsum</p>
+              <p>logoipsum</p>
             </span>
 
             <span class="rightTop">
@@ -291,7 +291,7 @@
                 />
               </svg>
 
-              <p>Logoipsum</p>
+              <p>logoipsum</p>
             </span>
 
             <span class="rightBottom">
@@ -501,18 +501,18 @@
       <div class="eventCarouselCon">
         <transition :name="classes.transitionName">
           <div class="events-row1" v-if="classes.toggle_event_row1">
-            <span class="fade"><img src="@/assets/event1.png" alt="" /></span>
-            <span class="fade"><img src="@/assets/event2.png" alt="" /></span>
-            <span class="fade"><img src="@/assets/event3.png" alt="" /></span>
+            <span class="fade"><img src="@/assets/event1.jpg" alt="" /></span>
+            <span class="fade"><img src="@/assets/event3.jpg" alt="" /></span>
+            <span class="fade"><img src="@/assets/event2.jpg" alt="" /></span>
           </div>
         </transition>
       </div>
       <div class="eventCarouselCon">
         <transition :name="classes.transitionName">
           <div class="events-row2" v-if="classes.toggle_event_row2">
-            <span class="fade"><img src="@/assets/event4.png" alt="" /></span>
-            <span class="fade"><img src="@/assets/event5.png" alt="" /></span>
-            <span class="fade"><img src="@/assets/event6.png" alt="" /></span>
+            <span class="fade"><img src="@/assets/event4.jpg" alt="" /></span>
+            <span class="fade"><img src="@/assets/event5.jpg" alt="" /></span>
+            <span class="fade"><img src="@/assets/event6.jpg" alt="" /></span>
           </div>
         </transition>
       </div>
@@ -545,20 +545,20 @@
               <small>Starting from N30,000</small>
             </span>
             <span class="fade"
-              ><img src="@/assets/courses2.png" alt="" />
-              <p>Design Bootcamp</p>
+              ><img src="@/assets/courses4.png" alt="" />
+              <p>Computer Basics</p>
               <small>Starting from N45,000</small>
             </span>
             <span class="fade"
               ><img src="@/assets/courses3.png" alt="" />
-              <p>3d Design Illustration</p>
-              <small>12th Feb - 08th Mar 2020</small>
+              <p>Graphics Design</p>
+              <small></small>
             </span>
           </div>
         </transition>
       </div>
 
-      <div class="courseCarouselCon">
+      <!-- <div class="courseCarouselCon">
         <transition :name="classes.transitionName">
           <div class="courses-row2" v-if="classes.toggle_course_row2">
             <span class="fade"
@@ -578,9 +578,9 @@
             </span>
           </div>
         </transition>
-      </div>
+      </div> -->
     </div>
-
+<!-- 
     <section class="slide-button">
       <span
         @click="carousel.courses.slideLeft()"
@@ -594,16 +594,16 @@
           partnerSlideButtonBackground: classes.toggle_course_row2,
         }"
       ></span>
-    </section>
+    </section> -->
 
     <div class="contact-body" id="contact">
       <div class="contact fade">
         <div class="left">
           <h2>Contact Us</h2>
-          <p>+234 8131147401</p>
+          <p>+234 8144849757</p>
           <p>{{ classes.emailId }}</p>
-          <p>No 15 uti street off ovie palace road,</p>
-          <p>Effurun, Delta State Nigeria.</p>
+          <p>Km 5 Refinery road adjacent Chicken Republic,</p>
+          <p>Effurun, Delta State.</p>
         </div>
         <form novalidate @submit.prevent="send()">
           <span>
@@ -861,10 +861,11 @@ export default {
       open_view: () => store.dispatch("toggle_true"),
       burger: false,
       validEmail: (email) => {
-        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var re =
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
       },
-      emailId: "soft-kode@gmail.com",
+      emailId: "hello@softkodesllc.com",
       email: {
         mail: "",
         name: "",
@@ -897,17 +898,17 @@ export default {
     const carousel = ref({
       partners: {
         slideRight: () => {
-          classes.value.toggle_partner_row2 = !classes.value
-            .toggle_partner_row2;
-          classes.value.toggle_partner_row1 = !classes.value
-            .toggle_partner_row1;
+          classes.value.toggle_partner_row2 =
+            !classes.value.toggle_partner_row2;
+          classes.value.toggle_partner_row1 =
+            !classes.value.toggle_partner_row1;
           classes.value.transitionName = "row2";
         },
         slideLeft: () => {
-          classes.value.toggle_partner_row2 = !classes.value
-            .toggle_partner_row2;
-          classes.value.toggle_partner_row1 = !classes.value
-            .toggle_partner_row1;
+          classes.value.toggle_partner_row2 =
+            !classes.value.toggle_partner_row2;
+          classes.value.toggle_partner_row1 =
+            !classes.value.toggle_partner_row1;
           classes.value.transitionName = "row1";
         },
       },
@@ -1102,26 +1103,26 @@ export default {
         false
       );
 
-      document.querySelector(".courses").addEventListener(
-        "touchstart",
-        (event) => {
-          console.log("start");
-          classes.value.swipe.touchstartX = event.changedTouches[0].screenX;
-          // classes.value.swipe.touchstartY = event.changedTouches[0].screenY
-        },
-        false
-      );
+      // document.querySelector(".courses").addEventListener(
+      //   "touchstart",
+      //   (event) => {
+      //     console.log("start");
+      //     classes.value.swipe.touchstartX = event.changedTouches[0].screenX;
+      //     // classes.value.swipe.touchstartY = event.changedTouches[0].screenY
+      //   },
+      //   false
+      // );
 
-      document.querySelector(".courses").addEventListener(
-        "touchend",
-        (event) => {
-          console.log("end");
-          classes.value.swipe.touchendX = event.changedTouches[0].screenX;
-          // classes.value.swipe.touchendY = event.changedTouches[0].screenY
-          handleGesture3();
-        },
-        false
-      );
+      // document.querySelector(".courses").addEventListener(
+      //   "touchend",
+      //   (event) => {
+      //     console.log("end");
+      //     classes.value.swipe.touchendX = event.changedTouches[0].screenX;
+      //     // classes.value.swipe.touchendY = event.changedTouches[0].screenY
+      //     handleGesture3();
+      //   },
+      //   false
+      // );
     });
     onUnmounted(() => {
       // document.removeEventListener("scroll", handleScroll);
@@ -1621,7 +1622,7 @@ nav > ul li:hover {
 }
 .events {
   width: 100%;
-  height: 80vh;
+  /* height: 80vh; */
   margin-top: 50px;
   padding-top: 70px;
   position: relative;
@@ -1678,11 +1679,43 @@ nav > ul li:hover {
 .events div span:nth-child(2) {
   padding: 0 20px;
 }
+ .events-row1 span:nth-child(1) {
+  min-width: 110px;
+  max-width: 230px;
+  min-height: 87px;
+  /* max-height: 182px; */
+}
+.events-row1 span:nth-child(2) {
+  min-width: 174px;
+  max-width: 360px;
+  min-height: 145px;
+  /* max-height: 300px; */
+}
+.events-row1 span:nth-child(3) {
+  min-width: 182px;
+  max-width: 378px;
+  min-height: 93px;
+  /* max-height: 195px; */
+} 
 .events-row2 span:nth-child(2) {
+ min-width: 150px;
+  max-width: 314px;
+  min-height: 117px;
+   /* max-height: 244px; */
   transform: translateY(30px);
 }
 .events-row2 span:nth-child(1) {
   transform: translateY(-20px);
+  min-width: 150px;
+  max-width: 335px;
+  min-height: 94px;
+  max-height: 195px;
+}
+.events-row2 span:nth-child(3) {
+   min-width: 150px;
+  max-width: 320px;
+  min-height: 117px;
+ /* max-height: 235px; */
 }
 .events div span:nth-child(3) {
   transform: translateY(-35px);
@@ -1691,7 +1724,7 @@ nav > ul li:hover {
   width: 100%;
   /* height: 100vh; */
   margin: auto;
-  padding-bottom: 20%;
+  padding-bottom: 15%;
   background: linear-gradient(115.59deg, #fc9f31 4.05%, #ee4e4e 107.24%);
   clip-path: url(#courseTopCurve);
   -webkit-clip-path: url(#courseTopCurve);
@@ -1711,7 +1744,7 @@ nav > ul li:hover {
   align-items: center;
   width: 85%;
   margin: auto;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
 }
 .courses div span {
   width: 30%;
@@ -2188,10 +2221,14 @@ footer .social span div svg {
   .events svg {
     display: none;
   }
+  .events-row1 span {
+    min-width: unset;
+    max-width: unset;
+  }
   .events div span {
     width: 85%;
-    min-height: 140px;
-    max-height: 200px;
+    min-height: 140px !important;
+    max-height: 200px !important;
     transform: translate(0px);
   }
   .events div span:nth-child(2) {
