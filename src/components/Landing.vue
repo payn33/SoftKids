@@ -213,42 +213,16 @@
         <transition :name="classes.transitionName">
           <div class="logo-row1 logo-row" v-if="classes.toggle_partner_row1">
             <span class="leftTop">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 28 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M 24.0094 5.22003C24.8269 6.19196 25.5005 7.27639 26.0094 8.44003C26.7507 10.1366 27.132 11.9685 27.1294 13.82C27.1239 21.2934 21.0727 27.3535 13.5994 27.37C11.8605 27.3691 10.1384 27.0294 8.52939 26.37C7.38174 25.914 6.30439 25.2979 5.32939 24.54C1.18237 21.3796 -0.77959 16.1174 0.286103 11.0135C1.35179 5.9095 5.25548 1.87207 10.3207 0.635107C15.3858 -0.601855 20.7111 1.18179 24.0094 5.22003ZM18.1094 4.01003C16.6936 3.35117 15.1509 3.00986 13.5894 3.01003L13.5994 2.99003C9.89642 2.98727 6.45021 4.88181 4.46836 8.00977C2.4865 11.1377 2.24534 15.063 3.82939 18.41C4.28108 17.9355 4.55943 17.3224 4.61939 16.67C4.9831 14.1574 6.9568 12.1837 9.46939 11.82C10.887 11.6915 12.0191 10.5844 12.1794 9.17003C12.5431 6.65744 14.5168 4.68374 17.0294 4.32003C17.4012 4.26338 17.7642 4.1592 18.1094 4.01003ZM5.31939 20.82C5.35939 20.7834 5.39939 20.7478 5.4394 20.7122L5.43946 20.7122C5.51943 20.6411 5.59941 20.57 5.67939 20.49C6.56904 19.6275 7.1401 18.4889 7.29939 17.26C7.36397 16.5693 7.67239 15.9241 8.16939 15.44C8.64763 14.9422 9.29136 14.6363 9.97939 14.58C12.492 14.2163 14.4657 12.2426 14.8294 9.73003C14.8726 9.00754 15.1827 8.32687 15.6994 7.82003C16.1894 7.33188 16.8393 7.03713 17.5294 6.99003C18.6533 6.83539 19.7015 6.33574 20.5294 5.56003C21.472 6.3421 22.2707 7.28292 22.8894 8.34003C22.8514 8.39138 22.8078 8.43833 22.7594 8.48003C22.2821 8.98222 21.6392 9.29479 20.9494 9.36003C18.4337 9.71747 16.4568 11.6943 16.0994 14.21C15.9541 15.6294 14.8293 16.75 13.4094 16.89C10.8898 17.2509 8.90579 19.2227 8.52939 21.74C8.47557 22.2288 8.30773 22.698 8.03939 23.11C7.01338 22.5009 6.09447 21.7272 5.31939 20.82ZM10.5894 24.26C11.5648 24.5398 12.5747 24.6811 13.5894 24.68V24.63C16.9385 24.617 20.0927 23.0538 22.1315 20.3968C24.1703 17.7397 24.8637 14.2883 24.0094 11.05C23.2502 11.5868 22.3714 11.9301 21.4494 12.05C20.0334 12.1945 18.9139 13.3141 18.7694 14.73C18.4046 17.2458 16.4259 19.2204 13.9094 19.58C12.4934 19.7245 11.3739 20.8441 11.2294 22.26C11.14 22.9602 10.923 23.638 10.5894 24.26Z"
-                  fill="#696871"
-                />
-              </svg>
-              <p>logoipsum</p>
+              <img src="@/assets/keystone.png" alt="" srcset="">
+              <!-- <p>logoipsum</p> -->
             </span>
 
             <span class="leftBottom">
-              <svg
-                width="20"
-                height="30"
-                viewBox="0 0 20 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M2.83941 1.51002V21.82C2.83941 22.0693 2.74038 22.3084 2.56409 22.4847C2.38781 22.661 2.14871 22.76 1.89941 22.76H1.67941C1.16026 22.76 0.73941 22.3392 0.73941 21.82V1.51002C0.744892 0.994779 1.16414 0.579988 1.67941 0.580017H1.89941C2.41468 0.579988 2.83393 0.994779 2.83941 1.51002ZM14.3698 14.3846C14.5682 14.1956 14.8356 14.0963 15.1094 14.11L15.0594 14.13C15.3504 14.1003 15.6398 14.1995 15.8514 14.4015C16.063 14.6035 16.1755 14.888 16.1594 15.18V20.68C16.1594 21.2599 15.6893 21.73 15.1094 21.73C14.5295 21.73 14.0594 21.2599 14.0594 20.68V15.11C14.0591 14.8359 14.1713 14.5737 14.3698 14.3846ZM17.3694 17.28C17.3694 16.7277 17.8171 16.28 18.3694 16.28C18.6588 16.2534 18.9454 16.354 19.1546 16.5556C19.3639 16.7572 19.4752 17.0399 19.4594 17.33V18.54C19.4594 19.1172 18.9915 19.585 18.4144 19.585C17.8373 19.585 17.3694 19.1172 17.3694 18.54V17.28ZM9.46941 25.6V18.37C9.1567 18.6077 8.77205 18.7312 8.37941 18.72C8.01924 18.7111 7.67037 18.5925 7.37941 18.38V25.6C7.37941 26.1772 7.84727 26.645 8.42441 26.645C9.00155 26.645 9.46941 26.1772 9.46941 25.6ZM5.10941 21.11C4.74958 21.0992 4.40124 20.9808 4.10941 20.77V28.02C4.10941 28.5999 4.57951 29.07 5.15941 29.07C5.73931 29.07 6.20941 28.5999 6.20941 28.02V20.82C5.88286 21.0311 5.49757 21.1327 5.10941 21.11ZM11.7894 16.25C11.4128 16.2474 11.0461 16.1287 10.7394 15.91V23.18C10.7394 23.7599 11.2095 24.23 11.7894 24.23C12.3693 24.23 12.8394 23.7599 12.8394 23.18V15.92C12.5222 16.1563 12.1349 16.2796 11.7394 16.27L11.7894 16.25ZM5.21941 20.34H4.99941C4.48026 20.34 4.05941 19.9192 4.05941 19.4V3.93002C4.06489 3.41478 4.48414 2.99999 4.99941 3.00002H5.21941C5.73468 2.99999 6.15393 3.41478 6.15941 3.93002V19.42C6.15941 19.9392 5.73856 20.36 5.21941 20.36V20.34ZM8.29941 17.96H8.52941C9.04304 17.96 9.45941 17.5436 9.45941 17.03V6.33002C9.45944 5.81475 9.04465 5.3955 8.52941 5.39002H8.29941C8.05102 5.39 7.81294 5.48936 7.63824 5.66593C7.46354 5.84251 7.36674 6.08164 7.36941 6.33002V17.03C7.36941 17.5436 7.78579 17.96 8.29941 17.96ZM11.8394 15.51H11.6294C11.1141 15.51 10.6949 15.0953 10.6894 14.58V8.82002C10.6728 8.56049 10.7645 8.30568 10.9426 8.1162C11.1207 7.92671 11.3694 7.81949 11.6294 7.82002H11.8494C12.3686 7.82002 12.7894 8.24087 12.7894 8.76002V14.56C12.7921 14.811 12.6942 15.0527 12.5177 15.2312C12.3411 15.4096 12.1005 15.51 11.8494 15.51H11.8394ZM14.9394 13.36H15.1594H15.1694C15.6846 13.3545 16.0994 12.9353 16.0994 12.42V10.93C16.0939 10.4148 15.6747 9.99999 15.1594 10H14.9394C14.4241 9.99999 14.0049 10.4148 13.9994 10.93V12.42C13.9994 12.9392 14.4203 13.36 14.9394 13.36Z"
-                  fill="#696871"
-                />
-              </svg>
-              <p>logoipsum</p>
+             <img src="@/assets/cyprian.png" alt="" srcset="">
+              <!-- <p>logoipsum</p> -->
             </span>
 
-            <span class="center">
+            <!-- <span class="center">
               <svg
                 width="69"
                 height="21"
@@ -273,53 +247,27 @@
               </svg>
 
               <p>logoipsum</p>
-            </span>
+            </span> -->
 
             <span class="rightTop">
-              <svg
-                width="28"
-                height="24"
-                viewBox="0 0 28 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M0.989346 10.39C2.50743 4.28837 7.98667 0.00531006 14.2743 0.00531006C20.562 0.00531006 26.0413 4.28837 27.5593 10.39H26.3593C24.335 10.3602 22.3522 10.9652 20.6893 12.12C20.5934 12.1895 20.4932 12.253 20.3893 12.31H20.2493C20.1455 12.253 20.0453 12.1895 19.9493 12.12C16.5178 9.81255 12.0308 9.81255 8.59935 12.12C8.50338 12.1895 8.40318 12.253 8.29935 12.31H8.15935C8.05551 12.253 7.95531 12.1895 7.85935 12.12C6.19648 10.9652 4.21366 10.3602 2.18935 10.39H0.989346ZM24.1993 16.66C24.8154 16.1803 25.5788 15.9293 26.3593 15.95H27.9693V12.74H26.3593C24.9846 12.7234 23.6412 13.1513 22.5293 13.96C21.245 14.9069 19.4937 14.9069 18.2093 13.96C15.8744 12.3346 12.7743 12.3346 10.4393 13.96C9.155 14.9069 7.40369 14.9069 6.11935 13.96C4.99374 13.141 3.63114 12.7125 2.23935 12.74H0.579346V15.95H2.18935C2.96985 15.9293 3.73333 16.1803 4.34935 16.66C6.68029 18.2866 9.7784 18.2866 12.1093 16.66C12.7261 16.1818 13.4891 15.931 14.2693 15.95C15.0501 15.9277 15.8141 16.1788 16.4293 16.66C18.7643 18.2855 21.8644 18.2855 24.1993 16.66ZM26.3593 21.69C25.5788 21.6693 24.8154 21.9203 24.1993 22.4C21.8644 24.0255 18.7643 24.0255 16.4293 22.4C15.8141 21.9188 15.0501 21.6677 14.2693 21.69C13.4891 21.671 12.7261 21.9218 12.1093 22.4C9.7784 24.0266 6.68029 24.0266 4.34935 22.4C3.73333 21.9203 2.96985 21.6693 2.18935 21.69H0.579346V18.48H2.23935C3.63114 18.4525 4.99374 18.881 6.11935 19.7C7.40369 20.6469 9.155 20.6469 10.4393 19.7C12.7743 18.0746 15.8744 18.0746 18.2093 19.7C19.4937 20.6469 21.245 20.6469 22.5293 19.7C23.6412 18.8913 24.9846 18.4634 26.3593 18.48H27.9693V21.69H26.3593Z"
-                  fill="#696871"
-                />
-              </svg>
+             <img src="@/assets/mor.png" alt="" srcset="">
 
-              <p>logoipsum</p>
+              <!-- <p>logoipsum</p> -->
             </span>
 
             <span class="rightBottom">
-              <svg
-                width="30"
-                height="30"
-                viewBox="0 0 30 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M29.6894 9.93C29.6896 5.8564 27.1896 2.20027 23.3935 0.722524C19.5974 -0.75522 15.2835 0.248397 12.5294 3.25H0.0494385V29.59H26.3994V17.28C28.4911 15.4091 29.6875 12.7363 29.6894 9.93ZM24.6194 9.93C24.6235 11.8804 23.4517 13.641 21.6509 14.3902C19.8501 15.1394 17.7753 14.7295 16.3947 13.3518C15.0142 11.9741 14.5999 9.90012 15.3454 8.09778C16.0908 6.29544 17.849 5.12 19.7994 5.12C22.4576 5.11999 24.6139 7.27189 24.6194 9.93ZM5.11944 24.52H21.3294V19.69C20.8237 19.7738 20.3121 19.8173 19.7994 19.82C14.3396 19.8145 9.91495 15.3898 9.90944 9.93C9.91383 9.39006 9.96401 8.85146 10.0594 8.32H5.11944V24.52Z"
-                  fill="#696871"
-                />
-              </svg>
+             
 
-              <p>Logoipsum</p>
+              <p>Success School</p>
             </span>
           </div>
         </transition>
       </div>
 
-      <div class="partnerCarouselCon">
+      <!-- <div class="partnerCarouselCon">
         <transition :name="classes.transitionName">
           <div class="logo-row2 logo-row" v-if="classes.toggle_partner_row2">
-            <span class="center">
+             <span class="center">
               <svg
                 width="69"
                 height="21"
@@ -344,7 +292,7 @@
               </svg>
 
               <p>Logoipsum</p>
-            </span>
+            </span> 
 
             <span class="leftTop">
               <svg
@@ -421,9 +369,9 @@
             </span>
           </div>
         </transition>
-      </div>
+      </div> -->
     </div>
-
+<!-- 
     <section class="slide-button">
       <span
         @click="carousel.partners.slideLeft()"
@@ -437,7 +385,7 @@
           partnerSlideButtonBackground: classes.toggle_partner_row2,
         }"
       ></span>
-    </section>
+    </section> -->
 
     <div class="about fade" id="about">
       <h1>About Softkids</h1>
@@ -1061,26 +1009,26 @@ export default {
       document.addEventListener("scroll", handleScroll);
       handleScroll();
 
-      document.querySelector("#partners").addEventListener(
-        "touchstart",
-        (event) => {
-          console.log("start");
-          classes.value.swipe.touchstartX = event.changedTouches[0].screenX;
-          // classes.value.swipe.touchstartY = event.changedTouches[0].screenY
-        },
-        false
-      );
+      // document.querySelector("#partners").addEventListener(
+      //   "touchstart",
+      //   (event) => {
+      //     console.log("start");
+      //     classes.value.swipe.touchstartX = event.changedTouches[0].screenX;
+      //     // classes.value.swipe.touchstartY = event.changedTouches[0].screenY
+      //   },
+      //   false
+      // );
 
-      document.querySelector("#partners").addEventListener(
-        "touchend",
-        (event) => {
-          console.log("end");
-          classes.value.swipe.touchendX = event.changedTouches[0].screenX;
-          // classes.value.swipe.touchendY = event.changedTouches[0].screenY
-          handleGesture();
-        },
-        false
-      );
+      // document.querySelector("#partners").addEventListener(
+      //   "touchend",
+      //   (event) => {
+      //     console.log("end");
+      //     classes.value.swipe.touchendX = event.changedTouches[0].screenX;
+      //     // classes.value.swipe.touchendY = event.changedTouches[0].screenY
+      //     handleGesture();
+      //   },
+      //   false
+      // );
 
       document.querySelector(".events").addEventListener(
         "touchstart",
@@ -1149,19 +1097,19 @@ export default {
         classes.value.scroll.elemBottom >= 0
       );
     };
-    const handleGesture = () => {
-      console.log("handle");
+    // const handleGesture = () => {
+    //   console.log("handle");
 
-      if (classes.value.swipe.touchendX < classes.value.swipe.touchstartX) {
-        console.log("left");
-        carousel.value.partners.slideRight();
-      }
+    //   if (classes.value.swipe.touchendX < classes.value.swipe.touchstartX) {
+    //     console.log("left");
+    //     carousel.value.partners.slideRight();
+    //   }
 
-      if (classes.value.swipe.touchendX > classes.value.swipe.touchstartX) {
-        console.log("right");
-        carousel.value.partners.slideLeft();
-      }
-    };
+    //   if (classes.value.swipe.touchendX > classes.value.swipe.touchstartX) {
+    //     console.log("right");
+    //     carousel.value.partners.slideLeft();
+    //   }
+    // };
     const handleGesture2 = () => {
       console.log("handle");
 
@@ -1174,16 +1122,16 @@ export default {
         carousel.value.events.slideLeft();
       }
     };
-    const handleGesture3 = () => {
-      if (classes.value.swipe.touchendX < classes.value.swipe.touchstartX) {
-        console.log("left");
-        carousel.value.courses.slideRight();
-      }
-      if (classes.value.swipe.touchendX > classes.value.swipe.touchstartX) {
-        console.log("right");
-        carousel.value.courses.slideLeft();
-      }
-    };
+    // const handleGesture3 = () => {
+    //   if (classes.value.swipe.touchendX < classes.value.swipe.touchstartX) {
+    //     console.log("left");
+    //     carousel.value.courses.slideRight();
+    //   }
+    //   if (classes.value.swipe.touchendX > classes.value.swipe.touchstartX) {
+    //     console.log("right");
+    //     carousel.value.courses.slideLeft();
+    //   }
+    // };
     setInterval(() => {
       windowSize();
       toggleCarousel(togCarousel);
@@ -1198,9 +1146,9 @@ export default {
       handleScroll,
       fadeElements,
       carousel,
-      handleGesture,
+      // handleGesture,
       handleGesture2,
-      handleGesture3,
+      // handleGesture3,
       isVisible,
     };
   },
@@ -2138,7 +2086,7 @@ footer .social span div svg {
 
   .partners {
     padding-top: 100px;
-    height: 380px;
+    height: 500px;
     position: relative;
   }
   .partners .partnerCarouselCon {
